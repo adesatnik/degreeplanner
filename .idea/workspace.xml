@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a6f3bb3a-8a87-4c70-9b04-472f203dece1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degreeplanner/settings.py" afterPath="$PROJECT_DIR$/degreeplanner/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="degreeplanner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/degreeplanner/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3181818">
-              <caret line="108" column="61" selection-start-line="108" selection-start-column="61" selection-end-line="108" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.60314685">
+              <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -207,6 +206,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/degreeplanner" />
       <recent name="$PROJECT_DIR$/degreeplanner/static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -453,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/degreeplanner/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3181818">
-          <caret line="108" column="61" selection-start-line="108" selection-start-column="61" selection-end-line="108" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.60314685">
+          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
           <folding />
         </state>
       </provider>
