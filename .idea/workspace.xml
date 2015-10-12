@@ -2,114 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6f3bb3a-8a87-4c70-9b04-472f203dece1" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/__init__.py" afterPath="$PROJECT_DIR$/registration/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/admin.py" afterPath="$PROJECT_DIR$/registration/admin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/auth_urls.py" afterPath="$PROJECT_DIR$/registration/auth_urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/__init__.py" afterPath="$PROJECT_DIR$/registration/management/commands/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/default/__init__.py" afterPath="$PROJECT_DIR$/registration/management/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/default/urls.py" afterPath="$PROJECT_DIR$/registration/backends/default/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/default/views.py" afterPath="$PROJECT_DIR$/registration/backends/default/views.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/__init__.py" afterPath="$PROJECT_DIR$/registration/backends/simple/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/urls.py" afterPath="$PROJECT_DIR$/registration/backends/simple/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/views.py" afterPath="$PROJECT_DIR$/registration/backends/simple/views.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/forms.py" afterPath="$PROJECT_DIR$/registration/forms.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ar/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/ar/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ar/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/ar/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/bg/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/bg/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/bg/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/bg/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ca/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/ca/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ca/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/ca/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/cs/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/cs/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/cs/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/cs/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/da/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/da/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/da/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/da/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/de/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/de/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/de/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/de/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/el/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/el/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/el/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/el/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/en/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/en/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/en/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/en/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/es/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/es/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/es/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/es/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/es_AR/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/es_AR/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/es_AR/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/es_AR/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/fa/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/fa/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/fa/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/fa/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/fr/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/fr/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/fr/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/fr/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/he/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/he/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/he/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/he/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/hr/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/hr/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/hr/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/hr/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/is/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/is/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/is/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/is/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/it/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/it/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/it/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/it/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ja/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/ja/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ja/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/ja/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ko/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/ko/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ko/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/ko/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/nb/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/nb/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/nb/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/nb/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/nl/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/nl/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/nl/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/nl/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pl/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/pl/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pl/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/pl/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pt/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/pt/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pt/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/pt/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pt_BR/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/pt_BR/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/pt_BR/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/pt_BR/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ru/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/ru/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/ru/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/ru/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sl/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/sl/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sl/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/sl/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sr/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/sr/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sr/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/sr/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sv/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/sv/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/sv/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/sv/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/tr_TR/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/tr_TR/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/tr_TR/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/tr_TR/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_CN/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/zh_CN/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_CN/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/zh_CN/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_TW/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/registration/locale/zh_TW/LC_MESSAGES/django.mo" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_TW/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/registration/locale/zh_TW/LC_MESSAGES/django.po" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/management/__init__.py" afterPath="$PROJECT_DIR$/registration/backends/default/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/management/commands/__init__.py" afterPath="$PROJECT_DIR$/registration/backends/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/management/commands/cleanupregistration.py" afterPath="$PROJECT_DIR$/registration/management/commands/cleanupregistration.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/registration/migrations/0001_initial.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/migrations/__init__.py" afterPath="$PROJECT_DIR$/registration/migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/models.py" afterPath="$PROJECT_DIR$/registration/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/signals.py" afterPath="$PROJECT_DIR$/registration/signals.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/south_migrations/__init__.py" afterPath="$PROJECT_DIR$/registration/south_migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activate.html" afterPath="$PROJECT_DIR$/registration/templates/registration/activate.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_complete.html" afterPath="$PROJECT_DIR$/registration/templates/registration/activation_complete.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email.html" afterPath="$PROJECT_DIR$/registration/templates/registration/activation_email.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email.txt" afterPath="$PROJECT_DIR$/registration/templates/registration/activation_email.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email_subject.txt" afterPath="$PROJECT_DIR$/registration/templates/registration/activation_email_subject.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/login.html" afterPath="$PROJECT_DIR$/registration/templates/registration/login.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/logout.html" afterPath="$PROJECT_DIR$/registration/templates/registration/logout.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_change_done.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_change_done.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_change_form.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_change_form.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_complete.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_reset_complete.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_confirm.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_reset_confirm.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_done.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_reset_done.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_email.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_reset_email.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_form.html" afterPath="$PROJECT_DIR$/registration/templates/registration/password_reset_form.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_base.html" afterPath="$PROJECT_DIR$/registration/templates/registration/registration_base.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_closed.html" afterPath="$PROJECT_DIR$/registration/templates/registration/registration_closed.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_complete.html" afterPath="$PROJECT_DIR$/registration/templates/registration/registration_complete.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_form.html" afterPath="$PROJECT_DIR$/registration/templates/registration/registration_form.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/__init__.py" afterPath="$PROJECT_DIR$/registration/tests/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/default_backend.py" afterPath="$PROJECT_DIR$/registration/tests/default_backend.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/forms.py" afterPath="$PROJECT_DIR$/registration/tests/forms.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/forms_custom_user.py" afterPath="$PROJECT_DIR$/registration/tests/forms_custom_user.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/models.py" afterPath="$PROJECT_DIR$/registration/tests/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/simple_backend.py" afterPath="$PROJECT_DIR$/registration/tests/simple_backend.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/tests/urls.py" afterPath="$PROJECT_DIR$/registration/tests/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/urls.py" afterPath="$PROJECT_DIR$/registration/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/users.py" afterPath="$PROJECT_DIR$/registration/users.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/utils.py" afterPath="$PROJECT_DIR$/registration/utils.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/degreeplanner/registration/views.py" afterPath="$PROJECT_DIR$/registration/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degreeplanner/urls.py" afterPath="$PROJECT_DIR$/degreeplanner/urls.py" />
     </list>
     <ignored path="degreeplanner.iws" />
@@ -141,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/registration/tests/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -161,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.13111888">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -490,13 +382,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="21" y="23" width="1260" height="669" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -574,16 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -603,8 +485,18 @@
     <entry file="file://$PROJECT_DIR$/registration/tests/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13111888">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
