@@ -2,8 +2,114 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6f3bb3a-8a87-4c70-9b04-472f203dece1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degreeplanner/settings.py" afterPath="$PROJECT_DIR$/degreeplanner/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degreeplanner/urls.py" afterPath="$PROJECT_DIR$/degreeplanner/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ar/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/bg/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ca/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/cs/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/da/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/de/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/el/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/en/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/es/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/es_AR/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/fa/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/fr/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/he/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/hr/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/is/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/it/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ja/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ko/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/nb/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/nl/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pl/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pt/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pt_BR/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ru/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sl/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sr/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sv/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/tr_TR/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_CN/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_TW/LC_MESSAGES/django.mo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/migrations/0001_initial.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/default/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/management/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/management/commands/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/south_migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_complete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/activation_email_subject.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/auth_urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/management/commands/cleanupregistration.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/default_backend.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ar/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/bg/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ca/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/cs/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/da/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/de/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/el/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/en/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/es/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/es_AR/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/fa/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/fr/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/he/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/hr/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/is/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/it/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ja/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ko/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/nb/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/nl/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pl/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pt/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/pt_BR/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/ru/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sl/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sr/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/sv/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/tr_TR/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_CN/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/locale/zh_TW/LC_MESSAGES/django.po" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/forms_custom_user.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/login.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/logout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_change_done.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_change_form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_complete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_confirm.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_done.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_email.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/password_reset_form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_closed.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_complete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/templates/registration/registration_form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/signals.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/simple_backend.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/default/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/tests/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/users.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/utils.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/default/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degreeplanner/registration/backends/simple/views.py" />
     </list>
     <ignored path="degreeplanner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,6 +140,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/degreeplanner/registration/tests/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,14 +160,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20979021">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,6 +271,28 @@
               <option name="myItemId" value="&lt; Python 2.7.10 virtualenv at ~/Projects/degreeplanner/venv &gt;" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site-packages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 2.7.10 virtualenv at ~/Projects/degreeplanner/venv &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -193,6 +329,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="degreeplanner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,9 +568,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -434,6 +608,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -450,13 +632,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/degreeplanner/urls.py">
+    <entry file="file://$PROJECT_DIR$/degreeplanner/registration/tests/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20979021">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
