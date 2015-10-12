@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+	{% if plans %}
+		{% for plan in plans %}
+			<a href="/planner/plans/{{plan.slug}}">{{plan.name}}</a>
+			<br>
+		{% endfor %}
+	
+	{% else %}
+		<p>You have no plans. That is very sad</p>
+	{% endif %}
+	<br>
+	<p><a href='/planner/add'>Add a plan</a></p>
+
+
+
+{% endblock %}

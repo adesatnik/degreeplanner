@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{%block body %}
+This is {{plan.name}}
+{% if notempty %}
+<p>This plan has the following classes:</p>
+<table>
+	<tr>
+		<th></th>
+		<th>Autumn</th>
+		<th>Winter</th>
+		<th>Spring</th>
+	</tr>
+	{%for year in classlist %}
+		<tr>
+			<th>{{forloop.counter}}</th>
+			{% for quarter in year%}
+				<td>
+					{%for class in quarter %}
+					{{class.course.code}}<br>
+					{% endfor %}
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>
+
+{% else %}
+<p>Your plan has no classes yet. Add some!</p>
+{% endif %}
+
+{% if duplicated %}
+<p><strong>You have duplicates!</strong></p>
+{% endif %}
+{% if authenticated %}
+	<p><a href='/planner/plans/{{plan.slug}}/add'>Add class</a></p>
+{% else %}
+	<p>You do not own this plan. You don't have permission to edit</p>
+{% endif %}
+{% endblock %}
