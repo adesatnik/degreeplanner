@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from dynamic_scraper.models import Scraper, SchedulerRuntime
-from scrapy.contrib.djangoitem import DjangoItem
+from scrapy_djangoitem import DjangoItem
 
 # Create your models here.
 
