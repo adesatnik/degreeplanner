@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from dynamic_scraper.models import Scraper, SchedulerRuntime
-from scrapy_djangoitem import DjangoItem
+
 
 # Create your models here.
 
@@ -12,7 +11,7 @@ class Course(models.Model):
     department = models.CharField(max_length=150)
 
     def __unicode__(self):
-        return self.code
+        return self.department + " " + self.code
 
 
 class DegreePlan(models.Model):
@@ -43,25 +42,6 @@ class Class(models.Model):
 
 
     def __unicode__(self):
-        return self.course.code
+        return self.course.department + " " + self.course.code
 
 
-class ClassWebsite(models.Model):
-    name = models.CharField(max_length=200)
-    url = models.URLField()
-    scraper = models.ForeignKey(Scraper, blank=True, null=True, on_delete=models.SET_NULL)
-    scraper_runtime = models.ForeignKey(SchedulerRuntime, blank=True, null=True, on_delete=models.SET_NULL)
-
-    def __unicode__(self):
-        return self.name
-
-class ScrClass (models.model):
-    code = models.CharField(max_length=150 )
-    name = models.CharField(max_length=250)
-    department = models.CharField(max_length=150)
-    checker_runtime = models.ForeignKey(SchedulerRuntime, blank=True, null=True, on_delete=models.SET_NULL)
-    website = models.ForeignKey(ClassWebsite)
-
-
-class ScrClassItem(DjangoItem):
-    django_model = ScrClass
