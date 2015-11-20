@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'degreeplanner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd5p0hpqgrqdhf3',
-        'USER': 'enajatwxhyoybq',
-        'PASSWORD': 'ul6_Cs2T9g98uLz1hUSTqQHWHZ',
-        'HOST': 'ec2-54-227-253-238.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'dplanner',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
 
 }
 }

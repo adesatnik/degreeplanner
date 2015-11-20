@@ -1,37 +1,44 @@
 __author__ = 'Alejandro'
-
 from bs4 import BeautifulSoup
-from planner.models import Course
+from planner.models import Course, Quarter
 from django.core.management.base import BaseCommand, CommandError
 import urllib2
 
-def parse_program_of_study(url):
-    coursestrings = []
+def parse_department_page(url, q):
     response = urllib2.urlopen(url)
     html = response.read()
     soup = BeautifulSoup(html, "lxml")
+    classes = []
 
-    filtered = soup(class_="courseblocktitle")
-    for f in filtered:
-        coursestrings.append(f.get_text().split("."))
+    rows =soup(class_="resultrow")
 
-    for c in coursestrings:
-        c[0] = c[0].encode("ascii", "replace").split("?")
+    for row in rows:
+        classes.append([
+            row.find(class_="name").a.next_sibling.strip(),
+            row.find(class_="two").string.strip()
+        ])
 
-    for c in coursestrings:
-        if "-" not in c[0][1]:
-            if not Course.objects.filter(code=c[0][1].strip(), name=c[1].strip(), department=c[0][0].strip()):
-                c = Course(code=c[0][1].strip(), name=c[1].strip(), department=c[0][0].strip())
-                c.save()
+    for cl in classes:
+        if not Course.objects.filter(name=cl[1], department=(cl[0].split(" "))[0],
+                   code=(((cl[0].split(" "))[1]).split("/"))[0]):
+            c = Course(name=cl[1], department=(cl[0].split(" "))[0],
+                       code=(((cl[0].split(" "))[1]).split("/"))[0]  )
+            c.save()
+            q.courses.add(c)
+
+
+
 
 
 
 
 class Command(BaseCommand):
-    help = 'Scrapes for classes'
+    help = "Scrapes the time schedules for classes"
 
     def add_arguments(self, parser):
         parser.add_argument("url", nargs='+', type=str)
+        parser.add_argument("quarter", nargs="+" ,type=str)
+        parser.add_argument("quarter", nargs="+", type=str)
 
     def handle(self, *args, **options):
         for url in options["url"]:
@@ -39,12 +46,18 @@ class Command(BaseCommand):
             response = urllib2.urlopen(url)
             html = response.read()
             soup = BeautifulSoup(html, "lxml")
+            q = Quarter.objects.get(quarter = options["quarter"], year = options["year"])
 
-            for link in soup.find(id="/thecollege/programsofstudy/").children:
-                if type(link.find("a")) != int:
-                    linkurl = "http://collegecatalog.uchicago.edu" + link.find("a").get("href")
-                    linkstrings.append(linkurl)
+            filtered = soup.find(id="tabs-1")
+            filtered = filtered("li")
 
-            for link in linkstrings:
-                parse_program_of_study(link)
+            for link in filtered:
+                linkstrings.append("https://classes.uchicago.edu/" + link.find("a").get("href"))
+
+
+
+
+
+
+
 

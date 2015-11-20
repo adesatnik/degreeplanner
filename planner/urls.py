@@ -6,7 +6,8 @@ urlpatterns = [
     url(r'^manager/', views.manager, name='manager'),
     url(r'^add/', views.add_plan, name='add'),
     url(r'^plans/(?P<plan_slug>[\w\-]+)/$', views.viewplan, name="plan"),
-    url(r'^plans/(?P<plan_slug>[\w\-]+)/add/$', views.add_class_department, name="addclassdepartment"),
-    url(r'^plans/(?P<plan_slug>[\w\-]+)/add/(?P<dept>[\w\-]+)/$', views.add_class, name="plan"),
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/add/(?P<coursei>[\w\- ]+)/$', views.add_class, name="plan"),
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/search/$', views.search_new, name="searchclass"),
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/search/(?P<search>[\w\- ]+)', views.search, name="searchclass"),
     
 ]

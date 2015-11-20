@@ -10,6 +10,7 @@ def list_departments():
             
             else:
                 list.append((course.department, course.department))
+
                 
         
         return list
@@ -18,27 +19,23 @@ class PlanForm(forms.ModelForm):
     class Meta:
         model = DegreePlan
         fields = ("name",)
-        
-class ClassForm(forms.ModelForm):
-    course = forms.ModelChoiceField(queryset = Course.objects.none())
-    def __init__(self,*args,**kwargs):
-        
-        self.dep = kwargs.pop('dep')
-       
-        super(ClassForm,self).__init__(*args,**kwargs)
-        qs = Course.objects.filter(department=self.dep)
-        self.fields['course'].queryset = qs
-       
-     
-        
-   
-    
-    
-    
-    class Meta:
-        model = Class
-        fields =("course", "year", "quarter" , "taken")
+QUARTERS =(
+              ("Autumn", 'Autumn'),
+              ("Winter", "Winter"),
+              ("Spring", "Spring")
+              )
+
+class ClassForm(forms.Form):
+    year = forms.IntegerField()
+    quarter = forms.ChoiceField(choices=QUARTERS)
+    taken = forms.BooleanField(required=False)
+
 
 class DeptChoiceForm(forms.Form):
-    
-    department = forms.ChoiceField( choices = list_departments() )
+    depts = list_departments()
+    department = forms.ChoiceField( choices = depts )
+
+class SearchClassForm(forms.Form):
+    searchterm = forms.CharField(required=False,label="Search: " , max_length=10000)
+    undergraduate = forms.BooleanField(required=False, label="Undergraduate" , initial=True)
+    graduate = forms.BooleanField(required=False, label="Graduate")

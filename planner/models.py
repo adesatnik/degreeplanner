@@ -27,13 +27,14 @@ class DegreePlan(models.Model):
         return self.name
 
 
-
-class Class(models.Model):
-    QUARTERS =(
+QUARTERS =(
               ("Autumn", 'Autumn'),
               ("Winter", "Winter"),
               ("Spring", "Spring")
               )
+
+class Class(models.Model):
+
     course = models.ForeignKey(Course)
     plan= models.ForeignKey(DegreePlan)
     year = models.IntegerField()
@@ -43,5 +44,30 @@ class Class(models.Model):
 
     def __unicode__(self):
         return self.course.department + " " + self.course.code
+
+class Quarter(models.Model):
+    quarter = models.CharField(max_length=50, choices=QUARTERS)
+    year = models.IntegerField()
+    courses = models.ManyToManyField(Course)
+    index = models.CharField(max_length=50)
+
+    def save(self, *args, **kwargs):
+        if self.quarter == "Autumn":
+            self.index = str(self.year) + "d"
+        if self.quarter == "Winter":
+            self.index =  str(self.year) + "a"
+        if self.quarter == "Spring":
+            self.index =  str(self.year) + "b"
+        super(Quarter, self).save(*args, **kwargs)
+
+
+    def __unicode__(self):
+        return self.quarter + " " + str(self.year)
+
+
+
+
+
+
 
 

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{%block body %}
+<form id='form' method='post' >
+		{% csrf_token %}
+		{{form.as_p}}
+		
+		<input type="submit" name='submit' value='Select' />
+		
+	</form>
+<br>
+{% if results %}
+    <ul>
+    {% for result in results %}
+    <li><a href="/planner/plans/{{plan.slug}}/add/{{result}}">{{result}} : {{result.name}}</a>
+        <br> Last offered in:{% for r in result.quarter_set.all|dictsortreversed:"index"|slice:":3" %} {{r}}, {% endfor %}</li>
+
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+{% endblock %}

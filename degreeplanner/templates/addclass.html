@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
+	You are adding {{course}}:
 	<form id='form' method='post' >
 		{% csrf_token %}
 		{{form.as_p}}
