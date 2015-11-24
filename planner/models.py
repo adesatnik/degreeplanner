@@ -64,10 +64,19 @@ class Quarter(models.Model):
     def __unicode__(self):
         return self.quarter + " " + str(self.year)
 
+class Requirement(models.Model):
+    name = models.CharField(max_length=1000)
+    number_required = models.IntegerField()
+    classes = models.ManyToManyField(Course, blank=True)
+    class_groups = models.ManyToManyField("self", blank=True, symmetrical=False)
 
+    def __unicode__(self):
+        return self.name
 
+class Major(models.Model):
+    name = models.CharField(max_length=250)
+    requirements = models.ManyToManyField(Requirement)
 
-
-
-
+    def __unicode__(self):
+        return self.name
 

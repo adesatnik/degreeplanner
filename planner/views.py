@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from planner.models import DegreePlan
+from planner.models import DegreePlan, Requirement
 from planner.forms import *
 from django.http  import HttpResponseRedirect
 # Create your views here.
@@ -124,6 +124,7 @@ def add_class(request, plan_slug, coursei):
 
 
 def search(request,plan_slug,search):
+    #print meets_requirement(Requirement.objects.get(name="Econ math req"), DegreePlan.objects.get(name="Plan"))
     context = {}
     if request.method == 'POST':
         form = SearchClassForm(data=request.POST)
@@ -206,6 +207,23 @@ def search(request,plan_slug,search):
 
 def search_new(request,plan_slug):
     return search(request,plan_slug,"")
+
+def meets_requirement(requirement, plan):
+    counter = 0
+    if requirement.class_groups.all():
+        for r in requirement.class_groups.all():
+            if meets_requirement(r,plan):
+                counter = 1 + counter
+    else:
+        print plan.class_set.all()
+        for r in requirement.classes.all():
+            for c in Class.objects.filter(course=r):
+                if c in plan.class_set.all():
+                    counter = 1 + counter
+    if counter >= requirement.number_required:
+        return True
+    else:
+        return False
 
 
 
