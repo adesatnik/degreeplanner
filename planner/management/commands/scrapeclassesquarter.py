@@ -39,6 +39,7 @@ def parse_department_page(url, q):
     soup = BeautifulSoup(html, "lxml")
     classes = []
 
+
     rows =soup(class_="resultrow")
 
     for row in rows:
@@ -57,12 +58,15 @@ def parse_department_page(url, q):
             c = Course(name=cl[1], department=(cl[0].split(" "))[0],
                        code=(((cl[0].split(" "))[1]).split("/"))[0]  )
             c.save()
-            q.courses.add(c)
+
+
+            c.quarter_set.add(q)
 
         else:
             c = Course.objects.get(name=cl[1], department=(cl[0].split(" "))[0],
                    code=(((cl[0].split(" "))[1]).split("/"))[0])
-            q.courses.add(c)
+
+            c.quarter_set.add(q)
 
 
 class Command(BaseCommand):
@@ -92,11 +96,13 @@ class Command(BaseCommand):
             for link in filtered:
                 linkstrings.append("https://classes.uchicago.edu/" + link.find("a").get("href"))
 
+            parse_department_page("https://classes.uchicago.edu/search.php?CourseLevel=All&search=SEARCH&Department=EALC",q)
 
 
-            for link in linkstrings:
+
+            """for link in linkstrings:
                 parse_department_page(link,q)
-                print(link + " done")
+                print(link + " done")"""
 
 
 

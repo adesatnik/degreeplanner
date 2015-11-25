@@ -12,7 +12,7 @@ class Course(models.Model):
     cross_listings = models.ManyToManyField("self", )
 
     def __unicode__(self):
-        return self.department + " " + self.code
+        return (self.department + " " + str(self.code))
 
 
 class DegreePlan(models.Model):

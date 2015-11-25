@@ -231,6 +231,10 @@ def meets_requirement(requirement, plan):
             for c in Class.objects.filter(course=r):
                 if c in plan.class_set.all():
                     counter = 1 + counter
+            for crl in r.cross_listings.all():
+                for c in Class.objects.filter(course=crl):
+                    if c in plan.class_set.all():
+                        counter = 1 + counter
 
 
     else:
@@ -243,6 +247,11 @@ def meets_requirement(requirement, plan):
                 for c in Class.objects.filter(course=r):
                     if c in plan.class_set.all():
                         counter = 1 + counter
+                for crl in r.cross_listings.all():
+                    for c in Class.objects.filter(course=crl):
+                        if c in plan.class_set.all():
+                            counter = 1 + counter
+
     if counter >= requirement.number_required:
         return True
     else:
