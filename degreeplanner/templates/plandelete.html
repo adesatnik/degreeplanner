@@ -17,7 +17,7 @@ This is {{plan.name}}
 			{% for quarter in year%}
 				<td>
 					{%for class in quarter %}
-					{{class.course}}<br>
+					<a href="/planner/plans/{{plan.slug}}/delete/{{class.id}}/">{{class.course}}</a><br>
 					{% endfor %}
 				</td>
 			{% endfor %}
@@ -34,9 +34,7 @@ This is {{plan.name}}
 {% endif %}
 {% if authenticated %}
 	<p><a href='/planner/plans/{{plan.slug}}/search'>Add class</a></p>
-	<p><a href="/planner/plans/{{plan.slug}}/delete">Delete class</a></p>
 {% else %}
 	<p>You do not own this plan. You don't have permission to edit</p>
 {% endif %}
-
 {% endblock %}

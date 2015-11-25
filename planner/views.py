@@ -27,7 +27,8 @@ QUARTERS =(
               ("Spring", "Spring")
               )
 
-def viewplan(request, plan_slug ):
+
+def planmanager(request, plan_slug, template ):
     plan = DegreePlan.objects.get(slug=plan_slug)
     context = {"plan" : plan}
     classset  = plan.class_set.all()
@@ -69,7 +70,19 @@ def viewplan(request, plan_slug ):
         duplicated = False 
     context['duplicated']= duplicated
     
-    return render(request, 'plan.html', context)
+    return render(request, template, context)
+
+def viewplan(request, plan_slug):
+    return planmanager(request, plan_slug, "plan.html")
+
+def delete(request, plan_slug):
+    return planmanager(request, plan_slug, "plandelete.html")
+
+def deleteclass(request, plan_slug, _class):
+    cl = Class.objects.get(id=_class)
+    cl.delete()
+
+    return HttpResponseRedirect("/planner/plans/" + plan_slug)
 
 def add_plan(request):
     context = {}
@@ -124,7 +137,7 @@ def add_class(request, plan_slug, coursei):
 
 
 def search(request,plan_slug,search):
-    #print meets_requirement(Requirement.objects.get(name="Econ math req"), DegreePlan.objects.get(name="Plan"))
+    print meets_requirement(Requirement.objects.get(name="Dramatic, Musical, and Visual Arts"), DegreePlan.objects.get(name="Plan"))
     context = {}
     if request.method == 'POST':
         form = SearchClassForm(data=request.POST)
@@ -148,7 +161,6 @@ def search(request,plan_slug,search):
         searchterms =[]
         level = search[-1:]
         search = search[:-1]
-        print level
 
         for s in search.split(" "):
             searchterms.append(s)
@@ -202,7 +214,6 @@ def search(request,plan_slug,search):
 
     context['form'] = form
     context["plan"] = DegreePlan.objects.get(slug=plan_slug)
-    print context["plan"]
     return render(request,"search.html", context)
 
 def search_new(request,plan_slug):
@@ -210,16 +221,28 @@ def search_new(request,plan_slug):
 
 def meets_requirement(requirement, plan):
     counter = 0
-    if requirement.class_groups.all():
-        for r in requirement.class_groups.all():
-            if meets_requirement(r,plan):
-                counter = 1 + counter
-    else:
-        print plan.class_set.all()
-        for r in requirement.classes.all():
+    if requirement.is_filter:
+        filter_string = requirement.filter_string.split(" ")
+        courses = Course.objects.filter(
+            department=filter_string[0],
+            code__range=(int(filter_string[1]), int(filter_string[2]))
+        )
+        for r in courses:
             for c in Class.objects.filter(course=r):
                 if c in plan.class_set.all():
                     counter = 1 + counter
+
+
+    else:
+        if requirement.class_groups.all():
+            for r in requirement.class_groups.all():
+                if meets_requirement(r,plan):
+                    counter = 1 + counter
+        if requirement.classes.all():
+            for r in requirement.classes.all():
+                for c in Class.objects.filter(course=r):
+                    if c in plan.class_set.all():
+                        counter = 1 + counter
     if counter >= requirement.number_required:
         return True
     else:
