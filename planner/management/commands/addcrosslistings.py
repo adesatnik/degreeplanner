@@ -69,7 +69,7 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        for c in Course.objects.filter(id__gt=13321):
+        for c in Course.objects.filter(id__gt=2954):
             scrapecrosslistings(c)
 
             print c.cross_listings.all()

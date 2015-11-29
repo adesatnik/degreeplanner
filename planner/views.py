@@ -30,6 +30,7 @@ QUARTERS =(
 
 def planmanager(request, plan_slug, template ):
     plan = DegreePlan.objects.get(slug=plan_slug)
+
     context = {"plan" : plan}
     classset  = plan.class_set.all()
     
@@ -137,7 +138,6 @@ def add_class(request, plan_slug, coursei):
 
 
 def search(request,plan_slug,search):
-    print meets_requirement(Requirement.objects.get(name="Dramatic, Musical, and Visual Arts"), DegreePlan.objects.get(name="Plan"))
     context = {}
     if request.method == 'POST':
         form = SearchClassForm(data=request.POST)
@@ -219,43 +219,6 @@ def search(request,plan_slug,search):
 def search_new(request,plan_slug):
     return search(request,plan_slug,"")
 
-def meets_requirement(requirement, plan):
-    counter = 0
-    if requirement.is_filter:
-        filter_string = requirement.filter_string.split(" ")
-        courses = Course.objects.filter(
-            department=filter_string[0],
-            code__range=(int(filter_string[1]), int(filter_string[2]))
-        )
-        for r in courses:
-            for c in Class.objects.filter(course=r):
-                if c in plan.class_set.all():
-                    counter = 1 + counter
-            for crl in r.cross_listings.all():
-                for c in Class.objects.filter(course=crl):
-                    if c in plan.class_set.all():
-                        counter = 1 + counter
-
-
-    else:
-        if requirement.class_groups.all():
-            for r in requirement.class_groups.all():
-                if meets_requirement(r,plan):
-                    counter = 1 + counter
-        if requirement.classes.all():
-            for r in requirement.classes.all():
-                for c in Class.objects.filter(course=r):
-                    if c in plan.class_set.all():
-                        counter = 1 + counter
-                for crl in r.cross_listings.all():
-                    for c in Class.objects.filter(course=crl):
-                        if c in plan.class_set.all():
-                            counter = 1 + counter
-
-    if counter >= requirement.number_required:
-        return True
-    else:
-        return False
 
 
 

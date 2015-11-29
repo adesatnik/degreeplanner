@@ -21,6 +21,8 @@ class Migration(migrations.Migration):
                 ('taken', models.BooleanField(default=False)),
             ],
         ),
+                  
+   
         migrations.CreateModel(
             name='Course',
             fields=[
@@ -28,6 +30,7 @@ class Migration(migrations.Migration):
                 ('code', models.CharField(max_length=150)),
                 ('name', models.CharField(max_length=250)),
                 ('department', models.CharField(max_length=150)),
+                ('cross_listings', models.ManyToManyField(related_name='_course_cross_listings_+', to='planner.Course')),
             ],
         ),
         migrations.CreateModel(
@@ -39,33 +42,7 @@ class Migration(migrations.Migration):
                 ('owner', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
-        migrations.CreateModel(
-            name='Quarter',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('quarter', models.CharField(max_length=50, choices=[(b'Autumn', b'Autumn'), (b'Winter', b'Winter'), (b'Spring', b'Spring')])),
-                ('year', models.IntegerField()),
-                ('courses', models.ManyToManyField(to='planner.Course')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Quarter1',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('quarter', models.CharField(max_length=50, choices=[(b'Autumn', b'Autumn'), (b'Winter', b'Winter'), (b'Spring', b'Spring')])),
-                ('year', models.IntegerField()),
-                ('index', models.CharField(max_length=50)),
-                ('courses', models.ManyToManyField(to='planner.Course')),
-            ],
-        ),
-        migrations.AddField(
-            model_name='class',
-            name='course',
-            field=models.ForeignKey(to='planner.Course'),
-        ),
-        migrations.AddField(
-            model_name='class',
-            name='plan',
-            field=models.ForeignKey(to='planner.DegreePlan'),
-        ),
+
+
+
     ]

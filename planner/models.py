@@ -76,6 +76,45 @@ class Requirement(models.Model):
     def __unicode__(self):
         return self.name
 
+    def meets_requirement(self, plan):
+        counter = 0
+        if self.is_filter:
+            filter_string = self.filter_string.split(" ")
+            courses = Course.objects.filter(
+                department=filter_string[0],
+                code__range=(int(filter_string[1]), int(filter_string[2]))
+            )
+            for r in courses:
+                for c in Class.objects.filter(course=r):
+                    if c in plan.class_set.all():
+                        counter = 1 + counter
+                for crl in r.cross_listings.all():
+                    for c in Class.objects.filter(course=crl):
+                        if c in plan.class_set.all():
+                            counter = 1 + counter
+
+
+        else:
+            if self.class_groups.all():
+                for r in self.class_groups.all():
+                    if r.meets_requirement(plan):
+                        counter = 1 + counter
+            if self.classes.all():
+                for r in self.classes.all():
+                    for c in Class.objects.filter(course=r):
+                        if c in plan.class_set.all():
+                            counter = 1 + counter
+                    for crl in r.cross_listings.all():
+                        for c in Class.objects.filter(course=crl):
+                            if c in plan.class_set.all():
+                                counter = 1 + counter
+
+        if counter >= self.number_required:
+            return True
+        else:
+            return False
+
+
 class Major(models.Model):
     name = models.CharField(max_length=250)
     requirements = models.ManyToManyField(Requirement, blank=True)

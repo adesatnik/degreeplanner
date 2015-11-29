@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6f3bb3a-8a87-4c70-9b04-472f203dece1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planner/management/commands/addcrosslistings.py" afterPath="$PROJECT_DIR$/planner/management/commands/addcrosslistings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planner/management/commands/addrequirement.py" afterPath="$PROJECT_DIR$/planner/management/commands/addrequirement.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cookies.lwp" afterPath="$PROJECT_DIR$/cookies.lwp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planner/models.py" afterPath="$PROJECT_DIR$/planner/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planner/management/commands/scrapeclassesquarter.py" afterPath="$PROJECT_DIR$/planner/management/commands/scrapeclassesquarter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planner/views.py" afterPath="$PROJECT_DIR$/planner/views.py" />
     </list>
     <ignored path="degreeplanner.iws" />
@@ -28,15 +25,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/planner/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17073171">
-              <caret line="233" column="39" selection-start-line="233" selection-start-column="39" selection-end-line="233" selection-end-column="39" />
+            <state vertical-scroll-proportion="-8.333333">
+              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#218#329#0" expanded="false" />
                 <element signature="e#357#397#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/planner/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +76,7 @@
       <file leaf-file-name="plan.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/degreeplanner/templates/plan.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9803922">
+            <state vertical-scroll-proportion="-4.901961">
               <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
               <folding />
             </state>
@@ -96,18 +105,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/planner/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="addcrosslistings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/planner/management/commands/addcrosslistings.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -120,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addrequirement.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addrequirement.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/planner/management/commands/addrequirement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.85987264">
+              <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
               <folding>
                 <element signature="e#25#90#0" expanded="true" />
               </folding>
@@ -179,11 +176,11 @@
         <option value="$PROJECT_DIR$/degreeplanner/templates/plan.html" />
         <option value="$PROJECT_DIR$/planner/urls.py" />
         <option value="$PROJECT_DIR$/degreeplanner/templates/plandelete.html" />
-        <option value="$PROJECT_DIR$/planner/management/commands/addrequirement.py" />
-        <option value="$PROJECT_DIR$/planner/models.py" />
         <option value="$PROJECT_DIR$/planner/management/commands/scrapeclassesquarter.py" />
         <option value="$PROJECT_DIR$/planner/management/commands/addcrosslistings.py" />
+        <option value="$PROJECT_DIR$/planner/models.py" />
         <option value="$PROJECT_DIR$/planner/views.py" />
+        <option value="$PROJECT_DIR$/planner/management/commands/addrequirement.py" />
       </list>
     </option>
   </component>
@@ -191,8 +188,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="86" />
-    <option name="y" value="41" />
+    <option name="x" value="5" />
+    <option name="y" value="38" />
     <option name="width" value="1260" />
     <option name="height" value="578" />
   </component>
@@ -661,8 +658,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="86" y="41" width="1260" height="578" extended-state="0" />
-    <editor active="true" />
+    <frame x="5" y="38" width="1260" height="578" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -673,7 +670,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3280943" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3280943" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1034,14 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/degreeplanner/templates/plan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9803922">
-          <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/degreeplanner/templates/plandelete.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.875">
@@ -1055,16 +1044,6 @@
         <state vertical-scroll-proportion="-1.875">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/planner/management/commands/addrequirement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-          <folding>
-            <element signature="e#25#90#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1099,21 +1078,39 @@
     <entry file="file://$PROJECT_DIR$/planner/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/degreeplanner/templates/plan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.901961">
+          <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/planner/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17073171">
-          <caret line="233" column="39" selection-start-line="233" selection-start-column="39" selection-end-line="233" selection-end-column="39" />
+        <state vertical-scroll-proportion="-8.333333">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#218#329#0" expanded="false" />
             <element signature="e#357#397#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/planner/management/commands/addrequirement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.85987264">
+          <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
+          <folding>
+            <element signature="e#25#90#0" expanded="true" />
           </folding>
         </state>
       </provider>

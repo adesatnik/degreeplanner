@@ -96,13 +96,12 @@ class Command(BaseCommand):
             for link in filtered:
                 linkstrings.append("https://classes.uchicago.edu/" + link.find("a").get("href"))
 
-            parse_department_page("https://classes.uchicago.edu/search.php?CourseLevel=All&search=SEARCH&Department=EALC",q)
 
 
 
-            """for link in linkstrings:
+            for link in linkstrings:
                 parse_department_page(link,q)
-                print(link + " done")"""
+                print(link + " done")
 
 
 

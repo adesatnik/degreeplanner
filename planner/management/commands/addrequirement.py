@@ -33,8 +33,11 @@ class Command(BaseCommand):
                 class_name = raw_input("Enter the class name: ")
                 try:
                     cs = Course.objects.filter(code=class_name.split(" ")[1], department=class_name.split(" ")[0])
-                    for c in cs:
-                        requirement.classes.add(c)
+                    if not cs:
+                        print "Invalid class name"
+                    else:
+                        for c in cs:
+                            requirement.classes.add(c)
                 except:
                     "Invalid class name"
             if input == "x":
