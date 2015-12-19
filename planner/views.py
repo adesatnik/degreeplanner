@@ -14,6 +14,7 @@ def intersection(l1, l2):
 
 
 def index(request):
+    
     return render(request, 'index.html', {})
 
 def manager(request):
@@ -29,10 +30,12 @@ QUARTERS =(
 
 
 def planmanager(request, plan_slug, template ):
+    req = Requirement.objects.get(name="Economics (M)")
+    print req.name
     plan = DegreePlan.objects.get(slug=plan_slug)
-
     context = {"plan" : plan}
     classset  = plan.class_set.all()
+    print str(req.meets_requirement(plan))
     
     authenticated = False
     if plan.owner == request.user:
@@ -63,8 +66,6 @@ def planmanager(request, plan_slug, template ):
             originals.append(course.course.code)
         else:
             duplicates.append(course.course.code)
-    print duplicates
-    print originals
     if duplicates:
         duplicated = True
     else:
@@ -79,11 +80,11 @@ def viewplan(request, plan_slug):
 def delete(request, plan_slug):
     return planmanager(request, plan_slug, "plandelete.html")
 
-def deleteclass(request, plan_slug, _class):
+def deleteclass(request,plan_slug, _class):
     cl = Class.objects.get(id=_class)
     cl.delete()
 
-    return HttpResponseRedirect("/planner/plans/" + plan_slug)
+    
 
 def add_plan(request):
     context = {}
@@ -109,8 +110,8 @@ def add_class(request, plan_slug, coursei):
    
     if request.method== 'POST':
         form = ClassForm(data=request.POST)
-        print form
-        if form.is_valid:
+        assert form
+        if form.is_valid():
             c = Class(course=Course.objects.get(code=coursei.split(" ")[1], department=coursei.split(" ")[0])
                       , plan = DegreePlan.objects.get(slug=plan_slug), year = form.cleaned_data["year"],
                       quarter = form.cleaned_data["quarter"], taken=form.cleaned_data["taken"])
@@ -218,6 +219,7 @@ def search(request,plan_slug,search):
 
 def search_new(request,plan_slug):
     return search(request,plan_slug,"")
+
 
 
 

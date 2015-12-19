@@ -72,52 +72,74 @@ class Requirement(models.Model):
     class_groups = models.ManyToManyField("self", blank=True, symmetrical=False)
     is_filter = models.BooleanField(default=False)
     filter_string = models.CharField(max_length=500, blank=True) #Must be of the form DEPT Lower_Bound Upper_Bound
+    filter_number_of_ranges = models.IntegerField(blank=True, default=0)
+    hidden = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
+    
+    
 
-    def meets_requirement(self, plan):
+    def meets_requirement(self, plan, acc={}, sortedkeys = OrderedDict()):
         counter = 0
+        
         if self.is_filter:
             filter_string = self.filter_string.split(" ")
-            courses = Course.objects.filter(
-                department=filter_string[0],
-                code__range=(int(filter_string[1]), int(filter_string[2]))
-            )
+            filterdept = filter_string[0]
+            filter_string.pop(0)
+            courses = Course.objects.none()
+            for i in range(0,self.filter_number_of_ranges*2):
+                if i % 2 !=0:
+                    pass
+                else:
+                    courses = courses | Course.objects.filter(
+                        department=filterdept,
+                        code__range=(int(filter_string[i]), int(filter_string[i+1]))
+                    )
             for r in courses:
                 for c in Class.objects.filter(course=r):
                     if c in plan.class_set.all():
                         counter = 1 + counter
-                for crl in r.cross_listings.all():
-                    for c in Class.objects.filter(course=crl):
-                        if c in plan.class_set.all():
-                            counter = 1 + counter
-
-
-        else:
-            if self.class_groups.all():
-                for r in self.class_groups.all():
-                    if r.meets_requirement(plan):
+                    else:
+                        for crl in r.cross_listings.all():
+                            for c in Class.objects.filter(course=crl):
+                                if c in plan.class_set.all():
+                                    counter = 1 + counter
+                                    break
+        if self.class_groups.all():
+            for r in self.class_groups.all():
+                if r.meets_requirement(plan, acc, sortedkeys)['values'][r.name]:
+                    counter = 1 + counter
+        if self.classes.all():
+            for r in self.classes.all():
+                for c in Class.objects.filter(course=r):
+                    if c in plan.class_set.all():
                         counter = 1 + counter
-            if self.classes.all():
-                for r in self.classes.all():
-                    for c in Class.objects.filter(course=r):
-                        if c in plan.class_set.all():
-                            counter = 1 + counter
+                        #print c
+                else:
                     for crl in r.cross_listings.all():
                         for c in Class.objects.filter(course=crl):
                             if c in plan.class_set.all():
                                 counter = 1 + counter
+                                #print c
+                                break
 
         if counter >= self.number_required:
-            return True
+            acc[self.name] =  True
+            sortedkeys.append(self.name)
+            print self.name
         else:
-            return False
+            acc[self.name] = False
+            sortedkeys.append(self.name)
+            print self.name
+        
+        return {'values' : acc, 'order' : sortedkeys}
+        
 
 
 class Major(models.Model):
     name = models.CharField(max_length=250)
-    requirements = models.ManyToManyField(Requirement, blank=True)
+    requirements = models.OneToOneField(Requirement)
 
     def __unicode__(self):
         return self.name

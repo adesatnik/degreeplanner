@@ -41,10 +41,18 @@ class Command(BaseCommand):
                 except:
                     "Invalid class name"
             if input == "x":
-                range_input = raw_input("Enter the department, the code lower bound \n " +
-                                            "and code upper bound separated by spaces: ")
+                dept = raw_input("Enter the department: ")
+                filterstring = dept + " "
+                n = int(raw_input("Enter the number of ranges: "))
+                for i in range(0,n):
+                    
+                    range_input = raw_input("Enter the code lower bound \n " +
+                                                "and code upper bound separated by a space in between and after: ")
+                    filterstring = filterstring + range_input
+                
                 requirement.is_filter = True
-                requirement.filter_string = range_input
+                requirement.filter_string = filterstring
+                requirement.filter_number_of_ranges = n
                 requirement.save()
                 active = False
 
@@ -55,6 +63,12 @@ class Command(BaseCommand):
                     requirement.class_groups.add(Requirement.objects.get(name=req_name))
                 except:
                     print "Requirement name invalid"
+        
+        hidden = raw_input("Hidden? (Y/N)")
+        if hidden == "Y":
+            requirement.hidden = True
+        else:
+            print "Requirement not hidden"
 
 
 

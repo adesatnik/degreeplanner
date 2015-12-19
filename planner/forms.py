@@ -26,8 +26,8 @@ QUARTERS =(
               )
 
 class ClassForm(forms.Form):
-    year = forms.IntegerField()
-    quarter = forms.ChoiceField(choices=QUARTERS)
+    year = forms.IntegerField(required=True)
+    quarter = forms.ChoiceField(choices=QUARTERS, required=True)
     taken = forms.BooleanField(required=False)
 
 
@@ -36,6 +36,6 @@ class DeptChoiceForm(forms.Form):
     department = forms.ChoiceField( choices = depts )
 
 class SearchClassForm(forms.Form):
-    searchterm = forms.CharField(required=False,label="Search: " , max_length=10000)
+    searchterm = forms.CharField(required=False,label="Search " , max_length=10000)
     undergraduate = forms.BooleanField(required=False, label="Undergraduate" , initial=True)
     graduate = forms.BooleanField(required=False, label="Graduate")
