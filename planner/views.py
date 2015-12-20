@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from planner.models import DegreePlan, Requirement
+from planner.models import DegreePlan, Requirement, Major
 from planner.forms import *
 from django.http  import HttpResponseRedirect
 # Create your views here.
@@ -30,12 +30,12 @@ QUARTERS =(
 
 
 def planmanager(request, plan_slug, template ):
-    req = Requirement.objects.get(name="Economics (M)")
-    print req.name
+    major = Major.objects.get(name="Economics")
     plan = DegreePlan.objects.get(slug=plan_slug)
     context = {"plan" : plan}
     classset  = plan.class_set.all()
-    print str(req.meets_requirement(plan))
+    context['requirements'] = major.print_requirements(plan)
+
     
     authenticated = False
     if plan.owner == request.user:
@@ -59,18 +59,8 @@ def planmanager(request, plan_slug, template ):
         classlist.append(quarterlist)
     context['classlist'] = classlist
     
-    originals = []
-    duplicates = []
-    for course in classset:
-        if course.course.code not in originals:
-            originals.append(course.course.code)
-        else:
-            duplicates.append(course.course.code)
-    if duplicates:
-        duplicated = True
-    else:
-        duplicated = False 
-    context['duplicated']= duplicated
+    
+    
     
     return render(request, template, context)
 

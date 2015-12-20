@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+import collections
 
 
 # Create your models here.
@@ -80,7 +81,7 @@ class Requirement(models.Model):
     
     
 
-    def meets_requirement(self, plan, acc={}, sortedkeys = OrderedDict()):
+    def meets_requirement(self, plan, acc= collections.OrderedDict()):
         counter = 0
         
         if self.is_filter:
@@ -108,7 +109,7 @@ class Requirement(models.Model):
                                     break
         if self.class_groups.all():
             for r in self.class_groups.all():
-                if r.meets_requirement(plan, acc, sortedkeys)['values'][r.name]:
+                if r.meets_requirement(plan, acc)[r.name]:
                     counter = 1 + counter
         if self.classes.all():
             for r in self.classes.all():
@@ -125,15 +126,13 @@ class Requirement(models.Model):
                                 break
 
         if counter >= self.number_required:
-            acc[self.name] =  True
-            sortedkeys.append(self.name)
+            acc[self.name] =  "satisfied"
             print self.name
         else:
-            acc[self.name] = False
-            sortedkeys.append(self.name)
+            acc[self.name] = "not satisfied"
             print self.name
         
-        return {'values' : acc, 'order' : sortedkeys}
+        return acc
         
 
 
@@ -143,4 +142,19 @@ class Major(models.Model):
 
     def __unicode__(self):
         return self.name
+    
+    def print_requirements(self, plan):
+        tempdict = self.requirements.meets_requirement(plan)
+        unfiltered = collections.OrderedDict(reversed(list(tempdict.items())))
+        filtered = []
+        for k, v in unfiltered.items():
+            print k
+            req = Requirement.objects.get(name=k)
+            if not req.hidden:
+                filtered.append((req.name, v))
+                
+        return filtered
+        
+        
+    
 
