@@ -75,13 +75,15 @@ class Requirement(models.Model):
     filter_string = models.CharField(max_length=500, blank=True) #Must be of the form DEPT Lower_Bound Upper_Bound
     filter_number_of_ranges = models.IntegerField(blank=True, default=0)
     hidden = models.BooleanField(default=False)
+    filter_display = models.CharField(max_length=100, blank=True)
+
 
     def __unicode__(self):
         return self.name
     
     
 
-    def meets_requirement(self, plan, acc= collections.OrderedDict()):
+    def meets_requirement(self, plan, acc= [], height = 0):
         counter = 0
         
         if self.is_filter:
@@ -109,8 +111,12 @@ class Requirement(models.Model):
                                     break
         if self.class_groups.all():
             for r in self.class_groups.all():
-                if r.meets_requirement(plan, acc)[r.name]:
-                    counter = 1 + counter
+                if r.hidden:
+                    if r.meets_requirement(plan, acc, height)[0]:
+                        counter = 1 + counter
+                else:
+                    if r.meets_requirement(plan, acc, height + 1)[0]:
+                        counter = 1 + counter
         if self.classes.all():
             for r in self.classes.all():
                 for c in Class.objects.filter(course=r):
@@ -126,10 +132,10 @@ class Requirement(models.Model):
                                 break
 
         if counter >= self.number_required:
-            acc[self.name] =  "satisfied"
+            acc.append((self.name, "satisfied", height))
             print self.name
         else:
-            acc[self.name] = "not satisfied"
+            acc.append((self.name, "satisfied", height))
             print self.name
         
         return acc
@@ -144,17 +150,23 @@ class Major(models.Model):
         return self.name
     
     def print_requirements(self, plan):
-        tempdict = self.requirements.meets_requirement(plan)
-        unfiltered = collections.OrderedDict(reversed(list(tempdict.items())))
+        unfiltered = reversed(self.requirements.meets_requirement(plan))
         filtered = []
-        for k, v in unfiltered.items():
-            print k
+        for k, v, h in unfiltered:
             req = Requirement.objects.get(name=k)
+            classes = req.classes.all()
+            classnames = []
+            if req.filter_display:
+                for i in range(0,req.number_required):
+                    classnames.append(req.filter_display)
+            for c in classes:
+                classnames.append(c.department + " " + c.code)
+                
             if not req.hidden:
-                filtered.append((req.name, v))
+                filtered.append((req.name, v, h, classnames))
                 
         return filtered
         
-        
+
     
 
