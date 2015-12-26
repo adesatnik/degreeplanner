@@ -1,5 +1,5 @@
 from django import forms
-from planner.models import DegreePlan, Class, Course
+from planner.models import *
 
 def list_departments():
         list = []

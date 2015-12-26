@@ -49,10 +49,31 @@ class Command(BaseCommand):
                     range_input = raw_input("Enter the code lower bound \n " +
                                                 "and code upper bound separated by a space in between and after: ")
                     filterstring = filterstring + range_input
+                    
+                display_string = raw_input("Filter display string? ")
+                
+                blacklist_active = True
+                
+                while blacklist_active:
+                    blclass = raw_input("Enter a class for the blacklist, or p to pass: ")
+                    if blclass == "p":
+                        blacklist_active = False
+                    else:
+                        try:
+                            _class = Course.objects.filter(code=blclass.split(" ")[1], department=blclass.split(" ")[0])
+                            if not _class:
+                                print "Invalid class name"
+                            else:
+                                for c in _class:
+                                    requirement.filter_blacklist.add(c)
+                                    print (c +  " added")
+                        except:
+                            "Invalid class name"                        
                 
                 requirement.is_filter = True
                 requirement.filter_string = filterstring
                 requirement.filter_number_of_ranges = n
+                requirement.filter_display = display_string
                 requirement.save()
                 active = False
 

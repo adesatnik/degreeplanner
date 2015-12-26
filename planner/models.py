@@ -71,18 +71,18 @@ class Requirement(models.Model):
     number_required = models.IntegerField()
     classes = models.ManyToManyField(Course, blank=True)
     class_groups = models.ManyToManyField("self", blank=True, symmetrical=False)
+    #settings for filters
     is_filter = models.BooleanField(default=False)
     filter_string = models.CharField(max_length=500, blank=True) #Must be of the form DEPT Lower_Bound Upper_Bound
     filter_number_of_ranges = models.IntegerField(blank=True, default=0)
     hidden = models.BooleanField(default=False)
     filter_display = models.CharField(max_length=100, blank=True)
+    filter_blacklist = models.ManyToManyField(Course, blank = True, related_name="requirement_filter_blacklist")
 
 
     def __unicode__(self):
         return self.name
     
-    
-
     def meets_requirement(self, plan, acc= [], height = 0):
         counter = 0
         
@@ -99,6 +99,9 @@ class Requirement(models.Model):
                         department=filterdept,
                         code__range=(int(filter_string[i]), int(filter_string[i+1]))
                     )
+            print courses
+            courses = courses.exclude(id__in=self.filter_blacklist.all())
+            print courses
             for r in courses:
                 for c in Class.objects.filter(course=r):
                     if c in plan.class_set.all():
@@ -112,45 +115,46 @@ class Requirement(models.Model):
         if self.class_groups.all():
             for r in self.class_groups.all():
                 if r.hidden:
-                    if r.meets_requirement(plan, acc, height)[0]:
+                    if r.meets_requirement(plan, acc, height)[0][1] == "satisfied":
                         counter = 1 + counter
                 else:
-                    if r.meets_requirement(plan, acc, height + 1)[0]:
-                        counter = 1 + counter
+                    if r.meets_requirement(plan, acc, height + 1)[0][1] == "not satisfied":
+                        pass
         if self.classes.all():
             for r in self.classes.all():
                 for c in Class.objects.filter(course=r):
                     if c in plan.class_set.all():
                         counter = 1 + counter
-                        #print c
                 else:
                     for crl in r.cross_listings.all():
                         for c in Class.objects.filter(course=crl):
                             if c in plan.class_set.all():
                                 counter = 1 + counter
-                                #print c
                                 break
 
         if counter >= self.number_required:
             acc.append((self.name, "satisfied", height))
-            print self.name
         else:
-            acc.append((self.name, "satisfied", height))
-            print self.name
+            acc.append((self.name, "not satisfied", height))
         
         return acc
+    
+    
+
+    
         
 
 
 class Major(models.Model):
     name = models.CharField(max_length=250)
     requirements = models.OneToOneField(Requirement)
+    notes = models.CharField(max_length=2000, blank=True)
 
     def __unicode__(self):
         return self.name
     
     def print_requirements(self, plan):
-        unfiltered = reversed(self.requirements.meets_requirement(plan))
+        unfiltered = reversed(self.requirements.meets_requirement(plan, []))
         filtered = []
         for k, v, h in unfiltered:
             req = Requirement.objects.get(name=k)
@@ -166,6 +170,8 @@ class Major(models.Model):
                 filtered.append((req.name, v, h, classnames))
                 
         return filtered
+    
+    
         
 
     

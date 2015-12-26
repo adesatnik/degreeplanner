@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from planner.models import DegreePlan, Requirement, Major
+from planner.models import *
 from planner.forms import *
 from django.http  import HttpResponseRedirect
 # Create your views here.
@@ -30,7 +30,7 @@ QUARTERS =(
 
 
 def planmanager(request, plan_slug, template ):
-    major = Major.objects.get(name="Economics")
+    major = Major.objects.get(name="Visual Arts")
     plan = DegreePlan.objects.get(slug=plan_slug)
     context = {"plan" : plan}
     classset  = plan.class_set.all()
@@ -73,6 +73,8 @@ def delete(request, plan_slug):
 def deleteclass(request,plan_slug, _class):
     cl = Class.objects.get(id=_class)
     cl.delete()
+    
+    return HttpResponse("")
 
     
 
@@ -209,6 +211,8 @@ def search(request,plan_slug,search):
 
 def search_new(request,plan_slug):
     return search(request,plan_slug,"")
+
+
 
 
 
