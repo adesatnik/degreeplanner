@@ -39,3 +39,7 @@ class SearchClassForm(forms.Form):
     searchterm = forms.CharField(required=False,label="Search " , max_length=10000)
     undergraduate = forms.BooleanField(required=False, label="Undergraduate" , initial=True)
     graduate = forms.BooleanField(required=False, label="Graduate")
+
+class DeclareMajorForm(forms.Form):
+    
+    declared_major = forms.ModelChoiceField(queryset=Major.objects.all(), required=True)

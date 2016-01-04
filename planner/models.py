@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 import collections
 
 
+
 # Create your models here.
 
 class Course(models.Model):
@@ -16,17 +17,7 @@ class Course(models.Model):
         return (self.department + " " + str(self.code))
 
 
-class DegreePlan(models.Model):
-    name = models.CharField(max_length = 250)
-    owner = models.ForeignKey(User)
-    slug = models.SlugField(unique = True)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(str(self.name) + str(self.owner))
-        super(DegreePlan, self).save(*args, **kwargs)
-
-    def __unicode__(self):
-        return self.name
 
 
 QUARTERS =(
@@ -35,17 +26,7 @@ QUARTERS =(
               ("Spring", "Spring")
               )
 
-class Class(models.Model):
 
-    course = models.ForeignKey(Course)
-    plan= models.ForeignKey(DegreePlan)
-    year = models.IntegerField()
-    quarter = models.CharField(max_length=50, choices=QUARTERS)
-    taken = models.BooleanField(default = False)
-
-
-    def __unicode__(self):
-        return self.course.department + " " + self.course.code
 
 class Quarter(models.Model):
     quarter = models.CharField(max_length=50, choices=QUARTERS)
@@ -83,61 +64,96 @@ class Requirement(models.Model):
     def __unicode__(self):
         return self.name
     
-    def meets_requirement(self, plan, acc= [], height = 0):
+    def count_required(self):
         counter = 0
-        
         if self.is_filter:
-            filter_string = self.filter_string.split(" ")
-            filterdept = filter_string[0]
-            filter_string.pop(0)
-            courses = Course.objects.none()
-            for i in range(0,self.filter_number_of_ranges*2):
-                if i % 2 !=0:
-                    pass
-                else:
-                    courses = courses | Course.objects.filter(
-                        department=filterdept,
-                        code__range=(int(filter_string[i]), int(filter_string[i+1]))
-                    )
-            print courses
-            courses = courses.exclude(id__in=self.filter_blacklist.all())
-            print courses
-            for r in courses:
-                for c in Class.objects.filter(course=r):
-                    if c in plan.class_set.all():
-                        counter = 1 + counter
-                    else:
-                        for crl in r.cross_listings.all():
-                            for c in Class.objects.filter(course=crl):
-                                if c in plan.class_set.all():
-                                    counter = 1 + counter
-                                    break
+            counter = self.number_required
+        
+        for c in self.classes.all():
+            counter = counter + 1
+        
+        for g in self.class_groups.all():
+            g.count_required = childcount
+            if not g.hidden:
+                counter = counter + childcount
+        
+        return counter
+            
+    
+    def meets_requirement(self, plan, acc= None, height = 0, course_set =[], used_courses = None):
+        if acc is None:
+            acc = []
+        if used_courses is None:
+            used_courses = []
+            
+        counter = 0
+
+        if height == 0:
+            class_set = plan.class_set.all()
+            for c in class_set:
+                course_set.append(c.course)        
+        
         if self.class_groups.all():
-            for r in self.class_groups.all():
+            orderedreqs = []
+            filterreqs = []
+            for c in self.class_groups.all():
+                if c.is_filter:
+                    filterreqs.append(c)
+                else:
+                    orderedreqs.append(c)
+            orderedreqs = orderedreqs + filterreqs            
+            for r in orderedreqs:
+                
                 if r.hidden:
-                    if r.meets_requirement(plan, acc, height)[0][1] == "satisfied":
+                    childrequirement = r.meets_requirement(plan, acc, height, course_set, used_courses )
+                    if childrequirement[0][-1][1] == "satisfied":
                         counter = 1 + counter
+                    used_courses = list(set(used_courses) | set(childrequirement[1]))
+
                 else:
-                    if r.meets_requirement(plan, acc, height + 1)[0][1] == "not satisfied":
-                        pass
+                    childrequirement = r.meets_requirement(plan, acc, height + 1, course_set, used_courses )
+                    if childrequirement[0][-1][1] == "satisfied":
+                        counter = 1 + counter
+                    used_courses = list(set(used_courses) | set(childrequirement[1]))
+
+                        
         if self.classes.all():
-            for r in self.classes.all():
-                for c in Class.objects.filter(course=r):
-                    if c in plan.class_set.all():
-                        counter = 1 + counter
+            for c in self.classes.all():
+                if c in course_set and c not in used_courses:
+                    counter = 1 + counter
+                    if not self.hidden:
+                        used_courses.append(c)
                 else:
-                    for crl in r.cross_listings.all():
-                        for c in Class.objects.filter(course=crl):
-                            if c in plan.class_set.all():
-                                counter = 1 + counter
+                    for crl in c.cross_listings.all():
+                        if crl in course_set and c not in used_courses:
+                            if not self.hidden:
+                                used_courses.append(c)
+                            counter = 1 + counter           
+                            break
+        if self.is_filter:
+            filterdept = self.filter_string.split(" ")[0]
+            coursenumbers = generate_filter_numbers(self)
+            for c in course_set:
+                if c.department == filterdept:
+                    if int(c.code) in coursenumbers and c not in used_courses:
+                        if not self.hidden:
+                            used_courses.append(c)
+                        counter = counter + 1    
+                else:
+                    for crl in c.cross_listings.all():
+                        if crl.department == filterdept:
+                            if int(crl.code) in coursenumbers and c not in used_courses:
+                                if not self.hidden:
+                                    used_courses.append(c)
+                                counter = counter + 1
                                 break
 
         if counter >= self.number_required:
-            acc.append((self.name, "satisfied", height))
+            acc.append((self, "satisfied", height))
         else:
-            acc.append((self.name, "not satisfied", height))
+            acc.append((self, "not satisfied", height))
         
-        return acc
+        return (acc, used_courses)
     
     
 
@@ -149,30 +165,156 @@ class Major(models.Model):
     name = models.CharField(max_length=250)
     requirements = models.OneToOneField(Requirement)
     notes = models.CharField(max_length=2000, blank=True)
-
+    slug = models.SlugField()
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self.name))
+        super(Major, self).save(*args, **kwargs)
+        
     def __unicode__(self):
         return self.name
     
     def print_requirements(self, plan):
-        unfiltered = reversed(self.requirements.meets_requirement(plan, []))
+        unfiltered = reversed(self.requirements.meets_requirement(plan, [], 0, [])[0])
+        
+        ordered = order_requirements(list(unfiltered))
         filtered = []
-        for k, v, h in unfiltered:
-            req = Requirement.objects.get(name=k)
-            classes = req.classes.all()
-            classnames = []
-            if req.filter_display:
-                for i in range(0,req.number_required):
-                    classnames.append(req.filter_display)
-            for c in classes:
-                classnames.append(c.department + " " + c.code)
-                
-            if not req.hidden:
-                filtered.append((req.name, v, h, classnames))
-                
+        class_set = plan.class_set.all()
+        course_set = []
+        for c in class_set:
+            course_set.append(c.course)
+            for crl in c.course.cross_listings.all():
+                course_set.append(crl)
+        for group in ordered:
+            filtered_group = []
+            for k, v, h in group:
+                req = k
+                inplan = False
+                classes = req.classes.all()
+                classnames = []
+                for c in classes:
+                    inplan = False
+                    if c in course_set:
+                        inplan = True
+                        course_set.remove(c)
+                    classnames.append((c.department + " " + c.code, inplan))
+                if req.filter_display:
+                    filterclassnames = []
+                    filter_string = req.filter_string.split(" ")
+                    filterdept = filter_string[0]
+                    filter_string.pop(0)       
+                    coursenumbers = generate_filter_numbers(req)                        
+                    for i in range(0,req.number_required): 
+                        inplan = False
+                        for c in course_set:
+                            if c.department == filterdept and int(c.code) in coursenumbers:
+                                course_set.remove(c)
+                                inplan = True
+                                break                             
+                        filterclassnames.append((req.filter_display, inplan))
+                    classnames = filterclassnames + classnames
+                          
+                if not req.hidden:
+                    filtered_group.append((req, v, h, classnames))
+            filtered.append(filtered_group)
         return filtered
+    
+def generate_filter_numbers(req):
+    filter_string = req.filter_string.split(" ")
+    filterdept = filter_string[0]
+    filter_string.pop(0)
+    coursenumbers = []
+    blacklist_numbers = []
+    for i in req.filter_blacklist.all():
+        blacklist_numbers.append(int(i.code))
+    for i in range(0,req.filter_number_of_ranges*2):
+        if i % 2 !=0:
+            pass
+        else:
+            for j in range(int(filter_string[i]), int(filter_string[i+1]) + 1):
+                if j not in blacklist_numbers:
+                    coursenumbers.append(j)     
+    return coursenumbers     
+
+def group_requirements(req_list):
+    acc =[]
+    grouped_list = []
+    n = 0
+    for r in req_list:
+        n = n + 1
+        if n == 1:
+            grouped_list.append([r])
+        elif n == len(req_list) - 1:
+            acc.append(r)
+            grouped_list.append(acc)
+        elif r[2] == 0:
+            pass
+        elif r[2] != 1:
+            acc.append(r)
+        else:
+            grouped_list.append(acc)
+            acc = []
+            acc.append(r)
     
     
         
-
+        
+        
     
+    grouped_list = list(reversed(grouped_list))
+    grouped_list.insert(0, grouped_list[-1])
+    grouped_list.pop(-1)
+    grouped_list.pop(-1)
+    return grouped_list
+
+def order_requirements(req_list):
+    grouped_list = group_requirements(req_list)
+    
+    ordered_list = []
+    filters = []
+    n = 0
+    for r in grouped_list:
+        if n == 0:
+            ordered_list.append(r)
+        else: 
+            if r[0][0].is_filter:
+                filters.append(r)
+            else: 
+                ordered_list.append(r)
+        n = n +1
+    ordered_list = ordered_list + filters
+
+    return ordered_list
+    
+    
+class DegreePlan(models.Model):
+    name = models.CharField(max_length = 250)
+    owner = models.ForeignKey(User)
+    slug = models.SlugField(unique = True)
+    declared_majors = models.ManyToManyField(Major, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self.name) + str(self.owner))
+        super(DegreePlan, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.name
+
+class Class(models.Model):
+
+    course = models.ForeignKey(Course)
+    plan= models.ForeignKey(DegreePlan)
+    year = models.IntegerField()
+    quarter = models.CharField(max_length=50, choices=QUARTERS)
+    taken = models.BooleanField(default = False)
+
+
+    def __unicode__(self):
+        return self.course.department + " " + self.course.code
+            
+            
+    
+
+
+        
 

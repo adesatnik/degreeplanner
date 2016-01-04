@@ -1,71 +1,32 @@
 $(document).ready(function() {
-	//Initializes popovers
-	$(function () {
-  		$('[data-toggle="popover"]').popover()
+// Icons
+	$(".class-container").hover(function (event){
+		var id = event.target.id;
+		var _class = id.split("-")[0]
+		$("#" + _class + "-delete").toggle()
 	})
 	
-	// Popover logic
-	var active = "none";
-	$(".quarter").click(function (event){
-		var id = event.target.id
-		var year = id.split("-")[0]
-		var quarter = id.split("-")[1]
-		
-		if ($("#"+ year + "-" + quarter + "-" +"text").is(":empty")){
-			if (active == year + "-"+ quarter){
-				$("#"+ year + "-" + quarter + "-" +"p").popover("hide")
-				active = "none"
-			}
-			else if (active == "none"){
-				$("#"+ year + "-" + quarter + "-" +"p").popover("show")	
-				active = year + "-" + quarter
-
-			}
-		}
-	});
-	
-	$(".textquarter").click(function (event){
-		var id = event.target.id
-		var year = id.split("-")[0]
-		var quarter = id.split("-")[1]
-		if (!$("#"+ year + "-" + quarter + "-" +"text").is(":empty")){
-
-			if (active == year + "-"+ quarter){
-				$("#"+ year + "-" + quarter + "-" +"p").popover("hide")
-				active = "none"
-			}
-			else if (active == "none"){
-				$("#"+ year + "-" + quarter + "-" +"p").popover("show")	
-				active = year + "-" + quarter
-			}
-		}
-		
-
-		
-	});
-	
-	$("body").click(function (event){
-				if(delete_activated != "none"){
-			$("." + delete_activated + "-class").click(function (event) {
-				$.get( "delete/" + event.target.id, function( data ) {
-				});
-				event.target.remove();
-				delete_activated = "none";
-			})
-		}
+	$(".quarter").hover(function (event){
+		var id = event.target.id;
+		var quarter = id.split("-")[0] + "-" + id.split("-")[1]
+		$("#" + quarter + "-add").toggle()
 	})
-	 
-	var delete_activated = "none";
-	$(document).on("click", ".delete-button", function (event){
-		var id = event.target.id
-		var year = id.split("-")[0]
-		var quarter = id.split("-")[1]
-		
-		$("." + year + "-" + quarter + "-class").wrap("<a href='#'></a>");
-		delete_activated = year + "-" + quarter 
-	});
+	
 	
 
+//Dropdown menu logic
+	$(".major-title").click(function (event){
+		var id = event.target.id;
+		var major = id.split("_")[0];
+		$("#" + major + "_requirements").toggle();
+	});
+	
+	$(".requirement-title").click(function (event){
+		var id = event.target.id;
+		var requirement = id.split("_")[0] + "_" + id.split("_")[1] ;
+		$("#" + requirement + "_contents").toggle();
+		
+	});
 	
 
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from planner.models import *
 from planner.forms import *
 from django.http  import HttpResponseRedirect
+import time
 # Create your views here.
 
 def intersection(l1, l2):
@@ -30,23 +31,32 @@ QUARTERS =(
 
 
 def planmanager(request, plan_slug, template ):
-    major = Major.objects.get(name="Visual Arts")
+    start = time.clock()
     plan = DegreePlan.objects.get(slug=plan_slug)
-    context = {"plan" : plan}
-    classset  = plan.class_set.all()
-    context['requirements'] = major.print_requirements(plan)
+    if request.method == "POST":
+        form = DeclareMajorForm(data=request.POST)
+        if form.is_valid():
+            plan.declared_majors.add(form.cleaned_data["declared_major"])
+            plan.save()
+            
+    else:
+        form = DeclareMajorForm()
+    context = {}
+    context["form"] = form
+    
+    
+    context["plan"] = plan
+    declared_major_requirements = []
+    for major in plan.declared_majors.all():
+        declared_major_requirements.append((major.print_requirements(plan), major))
+    context['declared_major_requirements'] = declared_major_requirements
+    
 
     
     authenticated = False
     if plan.owner == request.user:
         authenticated = True
     context['authenticated'] = authenticated
-   
-    if not classset: 
-        notempty = False
-    else:  
-        notempty = True
-    context['notempty'] = notempty
     
     classlist = []
     
@@ -61,7 +71,7 @@ def planmanager(request, plan_slug, template ):
     
     
     
-    
+    print time.clock() - start
     return render(request, template, context)
 
 def viewplan(request, plan_slug):
@@ -74,7 +84,7 @@ def deleteclass(request,plan_slug, _class):
     cl = Class.objects.get(id=_class)
     cl.delete()
     
-    return HttpResponse("")
+    return HttpResponseRedirect('/planner/plans/' + plan_slug)
 
     
 
@@ -97,40 +107,28 @@ def add_plan(request):
     context["form"]= form   
     return render(request, "addplan.html", context)
     
-def add_class(request, plan_slug, coursei):
+def add_class(request, plan_slug, year, quarter, courseid):
     context = {}
-   
-    if request.method== 'POST':
-        form = ClassForm(data=request.POST)
-        assert form
-        if form.is_valid():
-            c = Class(course=Course.objects.get(code=coursei.split(" ")[1], department=coursei.split(" ")[0])
-                      , plan = DegreePlan.objects.get(slug=plan_slug), year = form.cleaned_data["year"],
-                      quarter = form.cleaned_data["quarter"], taken=form.cleaned_data["taken"])
-
-            if not Class.objects.filter(course=Course.objects.get(code=coursei.split(" ")[1], department=coursei.split(" ")[0])
-                      , plan = DegreePlan.objects.get(slug=plan_slug), year = form.cleaned_data["year"],
-                      quarter = form.cleaned_data["quarter"], taken=form.cleaned_data["taken"]):
-                c.save()
-
-
-            return HttpResponseRedirect("/planner/plans/" + plan_slug)
-        
-    else:
-        form = ClassForm()
-        context["course"] = coursei
-       
-        
-        
+    course = Course.objects.get(id=courseid)
+    plan = DegreePlan.objects.get(slug=plan_slug)
+    quarter = int(quarter)
+    quarter_string = ""
+    if quarter == 1:
+        quarter_string = "Autumn"
+    elif quarter == 2:
+        quarter_string = "Winter"
+    elif quarter == 3:
+        quarter_string = "Spring"
+    new_class = Class(course=course, plan=plan, year=year, quarter=quarter_string)
+    new_class.save()
     
-    context['form'] = form
-   
-    return render(request, "addclass.html", context)
+    return HttpResponseRedirect("/planner/plans/" + plan_slug)
+    
 
 
 
 
-def search(request,plan_slug,search):
+def search(request,plan_slug,year, quarter, search):
     context = {}
     if request.method == 'POST':
         form = SearchClassForm(data=request.POST)
@@ -146,9 +144,9 @@ def search(request,plan_slug,search):
             else:
                 level = "n"
             if searchstring:
-                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/" + searchstring + level + "/")
+                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/" + year + "/" + quarter + "/" + searchstring + level + "/")
             else:
-                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/")
+                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/" + year + "/" + quarter + "/")
     else:
         form = SearchClassForm()
         searchterms =[]
@@ -201,7 +199,8 @@ def search(request,plan_slug,search):
             resultsf = results
 
         resultsf = sorted(resultsf, key= lambda x: (x.department,x.code))
-
+        context['year'] = year
+        context['quarter'] = quarter
         context["results"] = resultsf
 
 
@@ -209,9 +208,15 @@ def search(request,plan_slug,search):
     context["plan"] = DegreePlan.objects.get(slug=plan_slug)
     return render(request,"search.html", context)
 
-def search_new(request,plan_slug):
-    return search(request,plan_slug,"")
+def search_new(request,plan_slug, year, quarter):
+    return search(request,plan_slug, year, quarter,"")
 
+def deletedmajor(request, plan_slug, majorid):
+    major = Major.objects.get(id=majorid)
+    plan = DegreePlan.objects.get(slug=plan_slug)
+    plan.declared_majors.remove(major)
+    
+    return HttpResponseRedirect("/planner/plans/" + plan_slug)
 
 
 
