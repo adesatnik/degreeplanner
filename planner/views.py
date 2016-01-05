@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from planner.models import *
 from planner.forms import *
-from django.http  import HttpResponseRedirect
+from django.http  import HttpResponseRedirect, JsonResponse
 import time
 # Create your views here.
 
@@ -33,14 +34,8 @@ QUARTERS =(
 def planmanager(request, plan_slug, template ):
     start = time.clock()
     plan = DegreePlan.objects.get(slug=plan_slug)
-    if request.method == "POST":
-        form = DeclareMajorForm(data=request.POST)
-        if form.is_valid():
-            plan.declared_majors.add(form.cleaned_data["declared_major"])
-            plan.save()
-            
-    else:
-        form = DeclareMajorForm()
+    
+    form = DeclareMajorForm()
     context = {}
     context["form"] = form
     
@@ -57,7 +52,15 @@ def planmanager(request, plan_slug, template ):
     if plan.owner == request.user:
         authenticated = True
     context['authenticated'] = authenticated
+    context['classlist'] = generate_classlist(plan)
     
+    
+    
+    print time.clock() - start
+    return render(request, template, context)
+
+def generate_classlist(plan):
+
     classlist = []
     
     for i in range(1,5):   
@@ -67,12 +70,9 @@ def planmanager(request, plan_slug, template ):
             cquarter = quarter[0]
             quarterlist.append(set.filter(quarter=cquarter))
         classlist.append(quarterlist)
-    context['classlist'] = classlist
+        
+    return classlist
     
-    
-    
-    print time.clock() - start
-    return render(request, template, context)
 
 def viewplan(request, plan_slug):
     return planmanager(request, plan_slug, "plan.html")
@@ -81,14 +81,20 @@ def delete(request, plan_slug):
     return planmanager(request, plan_slug, "plandelete.html")
 
 def deleteclass(request,plan_slug, _class):
-    cl = Class.objects.get(id=_class)
-    cl.delete()
-    
-    return HttpResponseRedirect('/planner/plans/' + plan_slug)
+    plan = DegreePlan.objects.get(slug=plan_slug)
+    if request.user == plan.owner:
+        cl = Class.objects.get(id=_class)
+        cl.delete()
+        context = {'authenticated': True,
+                   'classlist': generate_classlist(plan)}
+        data = {'major_data' : generate_declared_majors(request, plan_slug),
+                'plan_table' : render_to_string('plan_table.html', context)}
+    return JsonResponse(data)
 
     
 
 def add_plan(request):
+    
     context = {}
     if request.method == 'POST':
         form = PlanForm(data=request.POST)
@@ -211,13 +217,52 @@ def search(request,plan_slug,year, quarter, search):
 def search_new(request,plan_slug, year, quarter):
     return search(request,plan_slug, year, quarter,"")
 
+def add_dmajor(request, plan_slug):
+    plan = DegreePlan.objects.get(slug=plan_slug)
+    form = DeclareMajorForm(data=request.POST)
+    if form.is_valid() and request.user == plan.owner:
+        plan.declared_majors.add(form.cleaned_data["declared_major"])
+        plan.save()
+    
+    data ={'major_data' : generate_declared_majors(request, plan_slug)}
+    
+    return JsonResponse(data)
+            
 def deletedmajor(request, plan_slug, majorid):
     major = Major.objects.get(id=majorid)
     plan = DegreePlan.objects.get(slug=plan_slug)
-    plan.declared_majors.remove(major)
+    if plan.owner == request.user:
+        plan.declared_majors.remove(major)
     
-    return HttpResponseRedirect("/planner/plans/" + plan_slug)
+    data ={'major_data' : generate_declared_majors(request, plan_slug)}
+    
+    return JsonResponse(data)
+    
+    
 
+def load_declared_majors(request, plan_slug):
+    data = {'major_data' : generate_declared_majors(request, plan_slug)}
+    
+    return JsonResponse(data)
+
+def generate_declared_majors(request, plan_slug):
+    context = {}
+    plan = DegreePlan.objects.get(slug=plan_slug)
+    context["plan"] = plan
+    declared_major_requirements = []
+    for major in plan.declared_majors.all():
+        declared_major_requirements.append((major.print_requirements(plan), major))
+    context['declared_major_requirements'] = declared_major_requirements
+    if request.user == plan.owner:
+        context['authenticated'] = True
+    else:
+        context['authenticated'] = False
+    
+    data = {}
+    return render_to_string("declared_majors.html", context)
+    
+    
+   
 
 
 

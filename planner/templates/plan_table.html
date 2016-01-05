@@ -1,0 +1,35 @@
+<table id="plan-table" class="table  table-bordered">
+	<tr>
+		<th class="year-col"></th>
+		<th>Autumn</th>
+		<th>Winter</th>
+		<th>Spring</th>
+	</tr>
+	{%for year in classlist %}
+		<tr>
+			<th class="year-col">{{forloop.counter}}</th>
+			{% for quarter in year %}
+				<td id="{{forloop.parentloop.counter}}-{{forloop.counter}}" class="quarter">
+					{% if authenticated %}
+					<div class="add-container" id='{{forloop.parentloop.counter}}-{{forloop.counter}}-add'>
+						<a href="/planner/plans/{{plan.slug}}/search/{{forloop.parentloop.counter}}/{{forloop.counter}}">+</a>
+					</div>
+					{% endif %}
+					
+					<div class="all-class-container">
+					{% for class in quarter %}
+						<div class='class-container' id='{{class.id}}-container'> 
+							<div class="delete-container" id="{{class.id}}-deletecontainer">
+								{% if authenticated %}
+								<a class="delete-link" id="{{class.id}}-delete" href="javascript:void(0)">&mdash;</a>
+								{% endif %}
+							</div>
+							<div class="class-name"id="{{class.id}}">{{class.course}}</div>
+						</div>
+					{% endfor %}	
+					</div>				
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>

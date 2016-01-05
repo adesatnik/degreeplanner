@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load planner_extras %}
+{% block css/js %}
+<script src="{% static 'js/plan.js' %}"></script>
+<link href="{% static 'css/plan.css' %}" rel="stylesheet">
+{% endblock %}
+{% block more_nav %}
+<li><a href="/planner/manager">Plans</a></li>
+{% endblock %}
+{% block body %}
+<div id="plan-container">
+<h1>{{plan.name}}</h1>
+<div id='plan-table-wrapper'>
+	{% include "plan_table.html" %}
+</div>
+{% if not authenticated %}
+	<p>You do not own this plan. You don't have permission to edit</p>
+{% endif %}
+</div>
+<div id="majors-container">
+	<h2>Declared Majors</h2>
+		<center><img id='loading-wheel' src="{% static 'icons/loading-wheel.gif' %}"></center>
+		<div id="declared-majors-wrapper">
+			
+		</div>
+	</br></br>
+	{% if authenticated %}
+		{% if declared_major_requirements %}
+		Declare another major: 
+		{% else %}
+		Declare a major:
+		{% endif %}
+		<form id="declaremajor" method="post"> 
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit" name='submit' value='Declare' />
+		</form>
+	{% endif %}
+</div>
+
+
+{% endblock %}

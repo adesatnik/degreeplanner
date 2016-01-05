@@ -65,6 +65,7 @@ html, body{
 	width: 40%;
 	padding-left: 10px;
 	border-left: solid;
+	
 }
 .major-container{
 	margin: 10px;
@@ -91,4 +92,8 @@ html, body{
 }
 .remove-major{
 	float:right;
+}
+
+#loading-wheel{
+	
 }

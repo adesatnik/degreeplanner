@@ -176,7 +176,6 @@ class Major(models.Model):
     
     def print_requirements(self, plan):
         unfiltered = reversed(self.requirements.meets_requirement(plan, [], 0, [])[0])
-        
         ordered = order_requirements(list(unfiltered))
         filtered = []
         class_set = plan.class_set.all()
@@ -244,9 +243,15 @@ def group_requirements(req_list):
         n = n + 1
         if n == 1:
             grouped_list.append([r])
-        elif n == len(req_list) - 1:
-            acc.append(r)
-            grouped_list.append(acc)
+        elif n == len(req_list) :
+            if r[2] == 1:
+                grouped_list.append(acc)
+                acc = []
+                acc.append(r)
+                grouped_list.append(acc)
+            else:
+                acc.append(r)
+                grouped_list.append(acc)
         elif r[2] == 0:
             pass
         elif r[2] != 1:
@@ -255,12 +260,7 @@ def group_requirements(req_list):
             grouped_list.append(acc)
             acc = []
             acc.append(r)
-    
-    
-        
-        
-        
-    
+
     grouped_list = list(reversed(grouped_list))
     grouped_list.insert(0, grouped_list[-1])
     grouped_list.pop(-1)
@@ -269,7 +269,6 @@ def group_requirements(req_list):
 
 def order_requirements(req_list):
     grouped_list = group_requirements(req_list)
-    
     ordered_list = []
     filters = []
     n = 0

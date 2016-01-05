@@ -11,7 +11,11 @@ urlpatterns = [
     url(r'^plans/(?P<plan_slug>[\w\-]+)/search/(?P<year>[\w\- ]+)/(?P<quarter>[\w\- ]+)/$', views.search_new, name="searchclass"),
     url(r'^plans/(?P<plan_slug>[\w\-]+)/search/(?P<year>[\w\- ]+)/(?P<quarter>[\w\- ]+)/(?P<search>[\w\- ]+)', views.search, name="searchclass"),
     url(r'^plans/(?P<plan_slug>[\w\-]+)/add/(?P<year>[\w\- ]+)/(?P<quarter>[\w\- ]+)/(?P<courseid>[\w\- ]+)', views.add_class, name="searchclass"),
-    url(r'^plans/(?P<plan_slug>[\w\-]+)/delete/(?P<_class>[\w\- ]+)/$', views.deleteclass, name="test"),
-    url(r'^plans/(?P<plan_slug>[\w\-]+)/removedmajor/(?P<majorid>[\w\-]+)/$', views.deletedmajor, name="delete declared major")
+    
+    #AJAX URLs for plan page
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/delete/(?P<_class>[\w\- ]+)/$', views.deleteclass, name="test"),    
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/getdmajors/$', views.load_declared_majors),
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/removedmajor/(?P<majorid>[\w\-]+)/$', views.deletedmajor, name="delete declared major"),
+    url(r'^plans/(?P<plan_slug>[\w\-]+)/adddmajor/$',views.add_dmajor )
     
 ]

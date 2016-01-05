@@ -1,0 +1,56 @@
+{% load planner_extras %}
+<div id="declared-majors">
+		{% for requirements in declared_major_requirements %}
+		<div class="major-container">
+				<span class="major-title" id="{{requirements.1.id}}_title">{{requirements.0.0.0.0}} is {{requirements.0.0.0.1}}</span> 
+				{% if authenticated %}
+				(<a class="major-remove" href="javascript:void(0)" id="{{requirements.1.id}}-remove">Remove</a>)     
+				{% endif %}
+					<div class="major-requirements" id="{{requirements.1.id}}_requirements">		
+							{% for c in requirements.0.0.0.3 %}
+								{% tabtimes 1 %} {{c.0}} 
+								{% if c.1 %}
+									<span style="font-size:15px;color:green">✓</span>
+								{% else %}
+									<span style="font-size:15px;color:red">x</span>
+								{% endif %}</br> 
+							{% endfor %}
+					
+					{% for group in requirements.0 %}
+						{% if forloop.counter == 1 %}
+						{% else %}
+						<span class="requirement-title" id="{{requirements.1.slug}}_{{group.0.0.id}}_title">{% tabtimes group.0.2 %}{{group.0.0}} is {{group.0.1}}</br></span>
+						<div class="requirement-contents" id="{{requirements.1.slug}}_{{group.0.0.id}}_contents">	
+							{% tabtimes group.0.2|add:"1" %} {{group.0.0.number_required}} 
+									    	{% if group.0.0.number_required == 1 %} is {% else %} are {% endif %} required </br>
+							{% for c in group.0.3 %}
+								{% tabtimes group.0.2|add:"1" %} {{c.0}} 
+									{% if c.1 %}
+										<span style="font-size:15px;color:green">✓</span>
+									{% else %}
+										<span style="font-size:15px;color:red">x</span>
+									{% endif %}</br>  
+							{% endfor %}
+							{% for r in group %}
+								{% if forloop.counter == 1 %}
+								{% else %}
+									    {% tabtimes r.2 %} {{r.0}}  is {{r.1}}  </br>
+									    {% tabtimes r.2|add:"1" %} {{r.0.number_required}} 
+									    	{% if r.0.number_required == 1 %} is {% else %} are {% endif %} required </br>
+									  	{% for c in r.3 %}
+									  		{% tabtimes r.2|add:"1" %} {{c.0}} 
+									  		{% if c.1 %}
+												<span style="font-size:15px;color:green">✓</span>
+											{% else %}
+												<span style="font-size:15px;color:red">x</span>
+											{% endif %}</br>   
+							  			{% endfor %}
+							  	{% endif %}
+						  	{% endfor %}
+					    </div>
+					   	{% endif %}
+					{% endfor %}
+					</div>
+		</div>
+		{% endfor %}
+</div>
