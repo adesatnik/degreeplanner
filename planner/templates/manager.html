@@ -1,17 +1,25 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block css/js %}
+<script src="{% static 'js/manager.js' %}"></script>
+<link href="{% static 'css/manager.css' %}" rel="stylesheet">
+{% endblock %}
 {% block body %}
+<div id="container" style="padding:15px;">
 	{% if plans %}
-		{% for plan in plans %}
-			<a href="/planner/plans/{{plan.slug}}">{{plan.name}}</a>
-			<br>
-		{% endfor %}
+		You have the following plans: 
+		<div id="plans-wrapper">
+		{% include 'plan_list.html' %}
+		</div>
+		<center><img id='loading-wheel' src="{% static 'icons/loading-wheel.gif' %}"></center>
 	
 	{% else %}
-		<p>You have no plans. That is very sad</p>
+		<h4 style="font-weight:normal;">You have no plans. Add some!</h4>
 	{% endif %}
 	<br>
-	<p><a href='/planner/add'>Add a plan</a></p>
-
+	<p><a id="addlink" href='javascript:void(0)'>Add a plan</a></p>
+</div>
+{% include 'addplan.html' %}
 
 
 

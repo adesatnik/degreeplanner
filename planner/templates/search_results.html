@@ -1,0 +1,13 @@
+<div id="search-results">
+	{% if results %}
+	    <ul>
+	    {% for result in results %}
+	    <li><a href="/planner/plans/{{plan.slug}}/add/{{year}}/{{quarter}}/{{result.id}}">{{result}} : {{result.name}}</a>
+	        <br> Last offered in:{% for r in result.quarter_set.all|dictsortreversed:"index"|slice:":3" %} {{r}}, {% endfor %}</li>
+	
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	No results found. Try another query. 
+	{% endif %}
+</div>

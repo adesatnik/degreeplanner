@@ -196,7 +196,7 @@ class Major(models.Model):
                     if c in course_set:
                         inplan = True
                         course_set.remove(c)
-                    classnames.append((c.department + " " + c.code, inplan))
+                    classnames.append((c, inplan))
                 if req.filter_display:
                     filterclassnames = []
                     filter_string = req.filter_string.split(" ")

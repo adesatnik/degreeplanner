@@ -1,6 +1,5 @@
-{% extends "base.html" %}
-{% block body %}
-	<form id='form' method='post' >
+
+	<form id='add-plan' method='post' >
 		{% csrf_token %}
 		{{form.as_p}}
 		
@@ -8,5 +7,3 @@
 		
 	</form>
 
-
-{% endblock %}

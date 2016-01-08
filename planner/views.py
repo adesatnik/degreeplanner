@@ -16,13 +16,20 @@ def intersection(l1, l2):
 
 
 def index(request):
-    
-    return render(request, 'index.html', {})
+    if request.user.is_authenticated():
+        return manager(request)
+    else:
+        return render(request, 'index.html', {})
 
 def manager(request):
-    plan_list = DegreePlan.objects.filter(owner=request.user)
-    context = {"plans" : plan_list}
-    return render(request, 'manager.html', context)
+    if request.user.is_authenticated():
+        form = PlanForm()
+        plan_list = DegreePlan.objects.filter(owner=request.user)
+        context = {"plans" : plan_list, 'form': form}
+        return render(request, 'manager.html', context)
+    else:
+        return HttpResponseRedirect("/planner/")
+        
 
 QUARTERS =(
               ("Autumn", 'Autumn'),
@@ -55,8 +62,6 @@ def planmanager(request, plan_slug, template ):
     context['classlist'] = generate_classlist(plan)
     
     
-    
-    print time.clock() - start
     return render(request, template, context)
 
 def generate_classlist(plan):
@@ -94,24 +99,15 @@ def deleteclass(request,plan_slug, _class):
     
 
 def add_plan(request):
+    form = PlanForm(data=request.POST)
+    if form.is_valid():
+          name = form.cleaned_data["name"]
+          plan = DegreePlan(owner=request.user, name=name)
+          plan.save()
+    data = {'new_plan' : render_to_string("plan_entry.html", {'plan' : plan})}
     
-    context = {}
-    if request.method == 'POST':
-        form = PlanForm(data=request.POST)
-        
-        if form.is_valid():
-            plan = form.save(commit=False)
-            
-            plan.owner=request.user
-            plan.save()
-        
-        return HttpResponseRedirect('/planner/manager/')
-        
-    else:
-        form = PlanForm()
+    return JsonResponse(data)
     
-    context["form"]= form   
-    return render(request, "addplan.html", context)
     
 def add_class(request, plan_slug, year, quarter, courseid):
     context = {}
@@ -131,110 +127,132 @@ def add_class(request, plan_slug, year, quarter, courseid):
     return HttpResponseRedirect("/planner/plans/" + plan_slug)
     
 
-
-
-
-def search(request,plan_slug,year, quarter, search):
+def search_page(request,plan_slug, year, quarter):
     context = {}
-    if request.method == 'POST':
-        form = SearchClassForm(data=request.POST)
-        if form.is_valid():
-            searchterm = form.cleaned_data["searchterm"]
-            searchstring = "".join(searchterm)
-            if form.cleaned_data["undergraduate"] and form.cleaned_data["graduate"]:
-                level = "b"
-            elif form.cleaned_data["undergraduate"]:
-                level = "u"
-            elif form.cleaned_data["graduate"]:
-                level = "g"
-            else:
-                level = "n"
-            if searchstring:
-                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/" + year + "/" + quarter + "/" + searchstring + level + "/")
-            else:
-                return HttpResponseRedirect("/planner/plans/" + plan_slug + "/search/" + year + "/" + quarter + "/")
-    else:
-        form = SearchClassForm()
-        searchterms =[]
-        level = search[-1:]
-        search = search[:-1]
-
-        for s in search.split(" "):
-            searchterms.append(s)
-        resultsn = list(Course.objects.all())
-        resultsc = []
-        results = []
-
-        if search != "":
-            for s in searchterms:
-
-
-                try:
-                    r = int(s)
-                    resultsn = resultsn
-                except:
-                    resultsn = intersection(resultsn , list(Course.objects.filter(name__icontains=s))
-                                            + list(Course.objects.filter(department__icontains=s)))
-
-                resultsc = resultsc + list(Course.objects.filter(code__icontains=s))
-
-
-
-
-        if search == "":
-            results = []
-        elif resultsc and resultsn:
-            results = intersection(resultsc, resultsn)
-        elif resultsc:
-            results = resultsc
-        elif resultsn:
-            results = resultsn
-
-
-        resultsf = []
-
-        if level == "g":
-            for r in results:
-                if int(r.code) >= 30000:
-                    resultsf.append(r)
-        elif level == "u":
-            for r in results:
-                if int(r.code) < 30000:
-                    resultsf.append(r)
-        elif level == "b":
-            resultsf = results
-
-        resultsf = sorted(resultsf, key= lambda x: (x.department,x.code))
-        context['year'] = year
-        context['quarter'] = quarter
-        context["results"] = resultsf
-
-
+    form = SearchClassForm()
     context['form'] = form
-    context["plan"] = DegreePlan.objects.get(slug=plan_slug)
-    return render(request,"search.html", context)
+    return render(request, "search.html", context)
 
-def search_new(request,plan_slug, year, quarter):
-    return search(request,plan_slug, year, quarter,"")
+
+def search(request, plan_slug, year, quarter):
+    context = {}
+    
+    form = SearchClassForm(data=request.POST)
+    if form.is_valid():
+        searchterm = form.cleaned_data["searchterm"]
+        searchstring = "".join(searchterm)
+        if form.cleaned_data["undergraduate"] and form.cleaned_data["graduate"]:
+            searchstring += "b"
+        elif form.cleaned_data["undergraduate"]:
+            searchstring += "u"
+        elif form.cleaned_data["graduate"]:
+            searchstring  += "g"
+        else:
+            searchstring+= "n"
+    else:
+        searchstring = []
+    
+    searchterms =[]
+    level = searchstring[-1:]
+    search = searchstring[:-1]
+
+    for s in search.split(" "):
+        searchterms.append(s)
+    resultsn = list(Course.objects.all())
+    resultsc = []
+    results = []
+
+    if search != "":
+        for s in searchterms:
+
+
+            try:
+                r = int(s)
+                resultsn = resultsn
+            except:
+                resultsn = intersection(resultsn , list(Course.objects.filter(name__icontains=s))
+                                        + list(Course.objects.filter(department__icontains=s)))
+
+            resultsc = resultsc + list(Course.objects.filter(code__icontains=s))
+
+
+
+
+    if search == "":
+        results = []
+    elif resultsc and resultsn:
+        results = intersection(resultsc, resultsn)
+    elif resultsc:
+        results = resultsc
+    elif resultsn:
+        results = resultsn
+
+
+    resultsf = []
+
+    if level == "g":
+        for r in results:
+            if int(r.code) >= 30000:
+                resultsf.append(r)
+    elif level == "u":
+        for r in results:
+            if int(r.code) < 30000:
+                resultsf.append(r)
+    elif level == "b":
+        resultsf = results
+
+    resultsf = sorted(resultsf, key= lambda x: (x.department,x.code))
+    context['year'] = year
+    context['quarter'] = quarter
+    context["results"] = resultsf
+    
+
+    
+    context["plan"] = DegreePlan.objects.get(slug=plan_slug)
+    
+    data = {'results' : render_to_string("search_results.html", context)}
+    
+    return JsonResponse(data)
 
 def add_dmajor(request, plan_slug):
+    data = {}
     plan = DegreePlan.objects.get(slug=plan_slug)
     form = DeclareMajorForm(data=request.POST)
     if form.is_valid() and request.user == plan.owner:
-        plan.declared_majors.add(form.cleaned_data["declared_major"])
+        major = form.cleaned_data['declared_major']
+        plan.declared_majors.add(major)
         plan.save()
+        context = {'requirements' : (major.print_requirements(plan), major),
+                   'authenticated' : True}
+        data['major_data'] = render_to_string("declared_major.html", context)
     
-    data ={'major_data' : generate_declared_majors(request, plan_slug)}
+    
     
     return JsonResponse(data)
+
+def removeplan(request, plan_id):
+    plan = DegreePlan.objects.get(id=plan_id)
+    data = {}
+    if request.user == plan.owner:
+        plan.delete()
+        data["status"] = "success"
+    else:
+        data['status'] = "failure"
+    
+    return JsonResponse(data)
+    
             
 def deletedmajor(request, plan_slug, majorid):
+    data = {}
     major = Major.objects.get(id=majorid)
     plan = DegreePlan.objects.get(slug=plan_slug)
     if plan.owner == request.user:
         plan.declared_majors.remove(major)
+        data['status'] = "success"
+    else:
+        data['status'] = "failure"
     
-    data ={'major_data' : generate_declared_majors(request, plan_slug)}
+    
     
     return JsonResponse(data)
     

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+	
 	$.ajax({
 		url: "getdmajors",
 		type: "GET",
@@ -77,15 +79,15 @@ $(document).ready(function() {
 	$(document).on("click", ".major-remove", function(event){
 		var id = event.target.id;
 		var major_id = id.split("-")[0];
-		$("#declared-majors").remove()
-		$("#loading-wheel").show()
 		$.ajax({
 			url:"removedmajor/" + major_id,
 			type: "GET",
 			dataType: "json",
 			success: function(json){
 				$("#loading-wheel").hide()
-				$("#declared-majors-wrapper").append(json.major_data)
+				if (json.status == "success"){
+					$("#" + major_id).remove()
+				}
 			}
 		})
 	})
@@ -93,7 +95,6 @@ $(document).ready(function() {
 //Add major AJAX
 	$("#declaremajor").submit(function (event){
 		event.preventDefault()
-		$("#declared-majors").remove()
 		$("#loading-wheel").show()
 		$.ajax({
 			url:"adddmajor/",
@@ -106,5 +107,7 @@ $(document).ready(function() {
 			}
 		});
 	})
-	
+
+
+		
 });

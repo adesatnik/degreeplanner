@@ -12,7 +12,7 @@
 				<td id="{{forloop.parentloop.counter}}-{{forloop.counter}}" class="quarter">
 					{% if authenticated %}
 					<div class="add-container" id='{{forloop.parentloop.counter}}-{{forloop.counter}}-add'>
-						<a href="/planner/plans/{{plan.slug}}/search/{{forloop.parentloop.counter}}/{{forloop.counter}}">+</a>
+						<a class="add-link" id='{{forloop.parentloop.counter}}-{{forloop.counter}}-addl' href="/planner/plans/{{plan.slug}}/search/{{forloop.parentloop.counter}}/{{forloop.counter}}">+</a>
 					</div>
 					{% endif %}
 					
@@ -33,3 +33,4 @@
 		</tr>
 	{% endfor %}
 </table>
+

@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-Welcome to the Degree Planner
-{% if user.is_authenticated %}
-<p>Hello {{user.username}}</p>
-<p><a href="{% url 'manager' %}">Go to the planner manager</a></p>
+<h1>Welcome!</h1>
 
-{% else %}
-<p>Hello, please create an account before starting to use the Degree Planner</p>
+<h4 style="font-weight:normal;">Please create an account or log in</h4>
 
-{% endif %}
+
+
+
 {% endblock %}
 	
