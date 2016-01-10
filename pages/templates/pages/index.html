@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Alejandro Desatnik</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+    <div style="height: 80px;"></div>
+    <div class="profpic"></div>
+    <div class="padding">
+    </div>
+    <div class="header">
+        <center>
+            <h2>Alejandro Desatnik</h2>
+            <span style="font-size: 20px;">
+                <p>University of Chicago, 2018</p>
+                <p>Computer Science and Economics</p>
+            </span>
+            <div class="padding"></div>
+            adesatnik (at) uchicago.edu
+        </center>
+        <div class="padding"></div>
+        <div id="links">
+        	<div style="float:left;">
+        		<a style="color:#021169; font-weight:bold;" href="/work">My work</a>
+        	</div>
+		    <div style="float:right;">
+		        <a href="http://www.linkedin.com/in/adesatnik"><img style="width:30px;height:30px;" src="{% static 'linkedin.png' %}"</a>
+		        <a href="http://www.github.com/adesatnik"><img style="width:30px;height:30px;" src="{% static 'github.jpeg' %}"></a>
+			</div>  
+		</div>  
+    </div>
+</div>
+
+</body>
+</html>
