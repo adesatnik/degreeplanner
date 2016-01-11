@@ -1,0 +1,83 @@
+html, body {
+	font-family: 'Gautami';
+	font-weight: 300;
+	font-size: 16px;
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
+	background: #fafafa;
+	line-height: 150%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	opacity: 0.75;
+}
+
+h2 {
+    font-size: 36px;
+    margin: 15px 0 15px 0;
+    line-height: 125%;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed black;
+}
+
+p {
+    margin: 5px 0 5px 0;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+	max-width: 700px;
+}
+
+.header {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.padding {
+	height: 20px;
+}
+
+.profpic {
+    margin-left: auto;
+    margin-right: auto;
+	height: 160px;
+	width: 160px;
+	border-radius: 50%;
+	background: url('me.jpg') no-repeat center;
+	background-size: 160px 160px;
+}
+
+.img {
+    height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	float: left;
+	margin: 10px 10px 0 0;
+}
+
+.img:hover {
+    opacity: 0.8;
+}
+
+.content-box {
+    overflow: hidden;
+    margin: 10px 0 10px 0;
+}

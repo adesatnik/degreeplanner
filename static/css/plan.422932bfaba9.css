@@ -1,0 +1,98 @@
+html, body{
+	height: 100%;
+}
+#plan-container {
+	width: 55%;
+	padding-right: 10px;
+	padding-left: 10px;
+	float: left;
+}
+
+.year-col{
+	width: 5%;
+}
+
+.major-requirements{
+	display: none;
+}
+.requirement-contents{
+	display: none;
+}
+
+#delete-icon{
+	width: 12px;
+	height: 4px;
+	text-align: right;
+}
+
+.class-container{
+	overflow:hidden
+}
+
+.class-name{
+	margin-right:25px;
+}
+
+.delete-container{
+	float:right;
+	display: none;
+	font-size:13px;
+	color: red;
+	font-weight: bold;
+	
+}
+.delete-container a:link, .delete_container a:visited, .delete-container a:hover{
+	color: red;
+}
+
+.add-container{
+	font-size: 13px;
+	color: green;
+	font-weight: bold;
+	text-align: right;
+	display: none;
+	float: right;
+}
+.add-container a:link, .add-container a:visited, .add-container a:hover {
+	color: green;
+}
+
+#majors-container{
+	overflow: hidden;
+	float:right;
+	width: 45%;
+	padding-left: 10px;
+	border-left:solid;
+	
+}
+.major-container{
+	margin: 10px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	padding: 15px;
+	
+
+	
+}
+
+.major-title{
+	font-size: 18px;
+	
+}
+
+.requirement-title{
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.requirement-contents{
+	background: white;
+	border-radius: 7px;
+}
+.remove-major{
+	float:right;
+}
+
+
+
+
