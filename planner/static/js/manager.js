@@ -10,6 +10,9 @@ $(document).ready(function(){
 			success: function(json){
 				if (json.status == "success"){
 					$("#" + plan +"-entry").remove();
+					if ($("#plans-wrapper").length == 0 | $("#plans").length == 0){
+						$("#plan-message").text("You have no plans. Add some!");
+					}
 				}
 			}
 		})
@@ -30,10 +33,21 @@ $(document).ready(function(){
 			dataType: "json",
 			success: function(json)
 			{
-				$("#loading-wheel").hide();
-				$("#plans").append(json.new_plan);
-				$("#add-plan").hide();
+				if(json.status == "success"){
+					$("#loading-wheel").hide();
+					$("#no-plans").remove();
+					$("#plan-message").text("You have the following plans: ");
+					$("#plans").append(json.new_plan);
+					$("#add-plan").hide();
+					
+				}
+				else{
+					$("#loading-wheel").hide();
+
+				}
+				
 			}
+			
 		})
 	})
 		

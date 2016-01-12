@@ -6,16 +6,22 @@
 {% endblock %}
 {% block body %}
 <div id="container" style="padding:15px;">
-	{% if plans %}
-		You have the following plans: 
+	<h4 id="plan-message" style="font-weight:normal;">
+			{% if plans %}
+			You have the following plans:
+			{% else %}
+			You have no plans. Add some!
+			{% endif %}
+		</h4>
+	<div id="plans" style="padding-left:10px; font-size:16px">
+	{% if plans %} 
 		<div id="plans-wrapper">
-		{% include 'plan_list.html' %}
+				{% include 'plan_list.html' %}
 		</div>
 		<center><img id='loading-wheel' src="{% static 'icons/loading-wheel.gif' %}"></center>
 	
-	{% else %}
-		<h4 style="font-weight:normal;">You have no plans. Add some!</h4>
 	{% endif %}
+	</div>
 	<br>
 	<p><a id="addlink" href='javascript:void(0)'>Add a plan</a></p>
 </div>

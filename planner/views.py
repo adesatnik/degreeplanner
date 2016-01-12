@@ -99,12 +99,19 @@ def deleteclass(request,plan_slug, _class):
     
 
 def add_plan(request):
+    data = {}
     form = PlanForm(data=request.POST)
     if form.is_valid():
           name = form.cleaned_data["name"]
           plan = DegreePlan(owner=request.user, name=name)
-          plan.save()
-    data = {'new_plan' : render_to_string("plan_entry.html", {'plan' : plan})}
+          try:
+              plan.save()
+              data['new_plan'] = render_to_string("plan_entry.html", {'plan' : plan})
+              data['status'] = "success"
+          except:
+              data['status'] = "failure"
+              
+    
     
     return JsonResponse(data)
     
