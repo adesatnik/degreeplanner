@@ -10,7 +10,7 @@ $(document).ready(function(){
 			success: function(json){
 				if (json.status == "success"){
 					$("#" + plan +"-entry").remove();
-					if ($("#plans-wrapper").length == 0 | $("#plans").length == 0){
+					if ( $("#plans").text().trim() == ""){
 						$("#plan-message").text("You have no plans. Add some!");
 					}
 				}
